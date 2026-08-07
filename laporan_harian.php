@@ -154,6 +154,18 @@ $total_pendapatan = 0;
         .btn-success {
             background: linear-gradient(135deg, #00c853 0%, #00a843 100%) !important;
         }
+        
+        .form-control {
+            color: #333 !important;
+            background: white !important;
+            border: 1px solid #e0e0e0 !important;
+        }
+        
+        .form-control:focus {
+            color: #333 !important;
+            background: white !important;
+            border-color: #667eea !important;
+        }
     </style>
 </head>
 <body>
@@ -162,7 +174,7 @@ $total_pendapatan = 0;
 
 <!-- Main Content -->
 <main class="main-content">
-    <?php include "includes/header.php"; ?>
+    <?php include "includes/heade#333 !impop>nt
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">

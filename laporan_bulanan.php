@@ -155,6 +155,18 @@ $total_pendapatan = 0;
         .btn-success {
             background: linear-gradient(135deg, #00c853 0%, #00a843 100%) !important;
         }
+        
+        .form-control {
+            color: #333 !important;
+            background: white !important;
+            border: 1px solid #e0e0e0 !important;
+        }
+        
+        .form-control:focus {
+            color: #333 !important;
+            background: white !important;
+            border-color: #667eea !important;
+        }
     </style>
 </head>
 <body>
@@ -175,7 +187,7 @@ $total_pendapatan = 0;
     <!-- Date Filter -->
     <div class="glass-card mb-3">
         <form method="get" class="d-flex align-center gap-2" style="flex-wrap: wrap;">
-            <label style="color: var(--text-primary);">Bulan:</label>
+            <label style="color: #333 !important;">Bulan:</label>
             <select name="bulan" class="form-control" style="width: auto;">
                 <?php for($i=1; $i<=12; $i++): ?>
                 <option value="<?= str_pad($i, 2, '0', STR_PAD_LEFT) ?>" <?= $i == $bulan ? 'selected' : '' ?>>
@@ -183,7 +195,7 @@ $total_pendapatan = 0;
                 </option>
                 <?php endfor; ?>
             </select>
-            <label style="color: var(--text-primary);">Tahun:</label>
+            <label style="color: #333 !important;">Tahun:</label>
             <select name="tahun" class="form-control" style="width: auto;">
                 <?php for($y=date('Y'); $y>=date('Y')-5; $y--): ?>
                 <option value="<?= $y ?>" <?= $y == $tahun ? 'selected' : '' ?>><?= $y ?></option>

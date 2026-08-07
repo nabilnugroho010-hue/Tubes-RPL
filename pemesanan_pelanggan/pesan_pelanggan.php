@@ -109,6 +109,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
             color: #333 !important;
         }
         
+        .form-control {
+            color: #333 !important;
+            background: white !important;
+            border: 1px solid #e0e0e0 !important;
+        }
+        
+        .form-control::placeholder {
+            color: #999 !important;
+        }
+        
+        .form-control:focus {
+            color: #333 !important;
+            background: white !important;
+            border-color: #667eea !important;
+        }
+        
         .glass-card {
             background: #f8f9fa;
             border: 1px solid #e0e0e0;
