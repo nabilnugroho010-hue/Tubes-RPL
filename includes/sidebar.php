@@ -22,10 +22,6 @@
             <span class="sidebar-menu-icon">✅</span>
             <span class="sidebar-menu-text">Konfirmasi Pesanan</span>
         </a>
-        <a href="ubah_status.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'ubah_status.php' ? 'active' : '' ?>">
-            <span class="sidebar-menu-icon">🔄</span>
-            <span class="sidebar-menu-text">Update Status</span>
-        </a>
         <a href="laporan_harian.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'laporan_harian.php' ? 'active' : '' ?>">
             <span class="sidebar-menu-icon">📊</span>
             <span class="sidebar-menu-text">Laporan Harian</span>
@@ -37,9 +33,6 @@
     </nav>
     
     <div class="sidebar-footer">
-        <a href="index.php" class="btn btn-outline w-100" style="margin-bottom: 8px;">
-            <span>🏠 Landing Page</span>
-        </a>
         <button onclick="confirmLogout()" class="btn btn-danger w-100">
             <span>🚪 Logout</span>
         </button>

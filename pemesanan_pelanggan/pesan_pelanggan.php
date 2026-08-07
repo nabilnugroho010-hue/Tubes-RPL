@@ -85,25 +85,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
     <title>Pemesanan Makanan & Minuman - SPGFood</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        .glass-container {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .category-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .category-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .category-tab:hover:not(.active) {
+            background: #e0e0e0;
+        }
+        
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
-            margin-top: 16px;
         }
         
         .menu-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-md);
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
             padding: 16px;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
         
         .menu-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(0, 245, 255, 0.3);
+            border-color: #667eea;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
         }
         
         .menu-card-header {
@@ -115,15 +161,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         
         .menu-card-name {
             font-weight: 600;
-            color: var(--text-primary);
+            color: #333;
             font-size: 1rem;
         }
         
         .menu-card-price {
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--neon-cyan);
+            color: #667eea;
             margin-bottom: 12px;
+        }
+        
+        .menu-card-type {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 8px;
         }
         
         .menu-card-quantity {
@@ -135,54 +187,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         .qty-btn {
             width: 36px;
             height: 36px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            border-radius: var(--radius-sm);
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
             cursor: pointer;
             font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
+            font-weight: bold;
+            transition: all 0.3s;
         }
         
         .qty-btn:hover {
-            background: rgba(0, 245, 255, 0.1);
-            border-color: var(--neon-cyan);
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
         }
         
         .qty-input {
             width: 60px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-sm);
-            color: var(--text-primary);
-            font-size: 1rem;
             padding: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
         }
         
         .qty-input:focus {
             outline: none;
-            border-color: var(--neon-cyan);
+            border-color: #667eea;
         }
         
         .cart-summary {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: rgba(0, 245, 255, 0.1);
-            border: 1px solid rgba(0, 245, 255, 0.3);
-            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
             padding: 16px 24px;
-            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
             z-index: 1000;
             display: none;
         }
         
         .cart-summary.show {
             display: block;
+        }
+        
+        .cart-summary #cartTotal {
+            color: white;
+        }
+        
+        .cart-summary p {
+            color: rgba(255, 255, 255, 0.8);
         }
         
         @media (max-width: 768px) {
@@ -204,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         .no-menu-message {
             text-align: center;
             padding: 40px;
-            color: var(--text-muted);
+            color: #666;
         }
         
         .no-menu-message div {

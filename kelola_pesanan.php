@@ -77,7 +77,6 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan ORDER BY tgl_pesanan 
                     </td>
                     <td>
                         <div class="d-flex gap-1">
-                            <a href="ubah_status.php?id=<?= $p['id_pesanan'] ?>" class="btn btn-sm btn-warning">Ubah Status</a>
                             <button onclick="confirmDelete(<?= $p['id_pesanan'] ?>)" class="btn btn-sm btn-danger">🗑️ Hapus</button>
                         </div>
                     </td>

@@ -72,7 +72,6 @@ $pesanan = mysqli_query($conn, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar
                     <td>
                         <div class="d-flex gap-1">
                             <a href="detail_pesanan.php?id=<?= $p['id_pesanan'] ?>" class="btn btn-sm btn-primary">👁️ Detail</a>
-                            <a href="ubah_status.php?id=<?= $p['id_pesanan'] ?>" class="btn btn-sm btn-warning">✏️ Status</a>
                         </div>
                     </td>
                 </tr>

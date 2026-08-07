@@ -44,52 +44,287 @@ if ($cek_pembayaran) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pembayaran - SPGFood</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .payment-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 32px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .payment-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .payment-subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .white-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .info-label {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+        
+        .info-value {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .info-value.highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .menu-item-info {
+            flex: 1;
+        }
+        
+        .menu-item-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .menu-item-price {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .menu-item-quantity {
+            text-align: center;
+            margin: 0 16px;
+        }
+        
+        .menu-item-subtotal {
+            text-align: right;
+            min-width: 100px;
+        }
+        
+        .total-section {
+            text-align: right;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .total-label {
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .total-amount {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #667eea;
+            margin: 0;
+        }
+        
+        .qris-container {
+            text-align: center;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .qris-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+        
+        .qris-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-radius: 12px;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+        }
+        
+        .bank-info {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .bank-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #667eea;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+        
+        .success-card {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: rgba(0, 255, 136, 0.3);
+            margin-bottom: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .menu-item-quantity {
+                margin: 8px 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="glass-container" style="max-width: 700px; margin: 40px auto; padding: 32px;">
-    <!-- Header -->
-    <div style="text-align: center; margin-bottom: 32px;">
-        <h2 style="margin-bottom: 8px;">💳 Pembayaran</h2>
-        <p style="color: var(--text-muted);">Selesaikan pembayaran pesanan Anda</p>
+<div class="payment-container">
+    <div class="payment-header">
+        <h2 class="payment-title">💳 Pembayaran</h2>
+        <p class="payment-subtitle">Selesaikan pembayaran pesanan Anda</p>
     </div>
 
     <?php if ($cek_pembayaran): ?>
     <!-- Sudah Bayar -->
-    <div class="glass-card" style="margin-bottom: 24px; background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.3);">
+    <div class="white-card success-card">
         <div style="text-align: center;">
             <div style="font-size: 3rem; margin-bottom: 16px;">✅</div>
-            <h3 style="color: var(--success); margin-bottom: 8px;">Pembayaran Berhasil!</h3>
-            <p style="color: var(--text-muted);">Pesanan Anda sedang diproses</p>
+            <h3 style="color: #00ff88; margin-bottom: 8px;">Pembayaran Berhasil!</h3>
+            <p style="color: #666;">Pesanan Anda sedang diproses</p>
         </div>
     </div>
     <?php else: ?>
     <!-- Belum Bayar -->
-    <div class="glass-card mb-3">
-        <h3 style="margin-bottom: 16px; font-size: 1.1rem;">📋 Ringkasan Pesanan</h3>
+    <div class="white-card">
+        <h3 class="card-title">📋 Ringkasan Pesanan</h3>
         
         <!-- Informasi Pesanan -->
-        <div class="glass-card" style="background: rgba(0, 245, 255, 0.05); border-color: rgba(0, 245, 255, 0.2); margin-bottom: 16px;">
-            <div class="grid grid-2">
+        <div class="white-card" style="background: #f8f9fa; margin-bottom: 16px;">
+            <div class="info-grid">
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Nama Pelanggan</p>
-                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($pesanan['nama_pelanggan']) ?></p>
+                    <p class="info-label">Nama Pelanggan</p>
+                    <p class="info-value"><?= htmlspecialchars($pesanan['nama_pelanggan']) ?></p>
                 </div>
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">No Meja</p>
-                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($pesanan['no_meja']) ?></p>
+                    <p class="info-label">No Meja</p>
+                    <p class="info-value"><?= htmlspecialchars($pesanan['no_meja']) ?></p>
                 </div>
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Kode Pelanggan</p>
-                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= htmlspecialchars($pesanan['kode_pelanggan']) ?></p>
+                    <p class="info-label">Kode Pelanggan</p>
+                    <p class="info-value highlight"><?= htmlspecialchars($pesanan['kode_pelanggan']) ?></p>
                 </div>
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Tanggal</p>
-                    <p style="font-weight: 500; margin: 0;"><?= date('d F Y • H:i:s', strtotime($pesanan['tgl_pesanan'])) ?> WIB</p>
+                    <p class="info-label">Tanggal</p>
+                    <p class="info-value"><?= date('d F Y • H:i:s', strtotime($pesanan['tgl_pesanan'])) ?> WIB</p>
                 </div>
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Status</p>
-                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($pesanan['status']) ?></p>
+                    <p class="info-label">Status</p>
+                    <p class="info-value"><?= htmlspecialchars($pesanan['status']) ?></p>
                 </div>
             </div>
         </div>
