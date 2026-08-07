@@ -2,6 +2,9 @@
 
 Sistem pemesanan makanan restoran modern dengan fitur realtime tracking untuk pelanggan dan panel admin yang lengkap.
 
+## 📝 Update Log
+- **2026-08-08**: Fixed all transparency issues across all pages - input fields, text colors, and selectors now fully visible
+
 ## 🌟 Fitur Utama
 
 ### Customer Panel
