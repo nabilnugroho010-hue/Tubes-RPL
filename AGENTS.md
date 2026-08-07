@@ -78,7 +78,23 @@ SPGFood adalah aplikasi pemesanan makanan restoran modern dengan fitur realtime 
 - `includes/sidebar.php` - Sidebar admin panel
 
 ### Config
-- `koneksi.php` - Database connection
+- `koneksi.php` - Database connection (wrapper for config/database.php)
+- `config/database.php` - Modular database configuration with environment support
+
+### Deployment Files
+- `composer.json` - PHP dependencies and build configuration
+- `Procfile` - Railway build instructions
+- `.env.example` - Environment variables template
+- `.htaccess` - Apache configuration for production
+- `README.md` - Project documentation and deployment guide
+
+### Scripts
+- `scripts/railway-setup.sh` - Railway setup script (Linux/Mac)
+- `scripts/railway-setup.bat` - Railway setup script (Windows)
+- `scripts/get-xampp-credentials.ps1` - XAMPP credentials helper (PowerShell)
+
+### Documentation
+- `docs/RAILWAY_DEPLOYMENT_GUIDE.md` - Detailed Railway deployment manual
 
 ## Alur Transaksi
 
@@ -234,16 +250,28 @@ Tabel `data_pembayaran` hanya menyimpan bukti pembayaran dan detail tambahan.
 - MySQL 5.7+
 - Web server (Apache/Nginx)
 - XAMPP (untuk development)
+- Railway account (untuk production deployment)
 
-### Setup
+### Local Development (XAMPP)
 1. Import database `db_pemesanan`
-2. Konfigurasi koneksi di `koneksi.php`
-3. Pastikan folder `gambar/bukti` writable
-4. Jalankan di browser: `http://localhost/pemesanan/`
+2. Copy `.env.example` ke `.env`
+3. Edit `.env` dengan credentials XAMPP
+4. Pastikan folder `gambar/bukti` writable
+5. Jalankan di browser: `http://localhost/pemesanan/`
+
+### Production Deployment (Railway)
+1. Push code ke GitHub
+2. Setup project di Railway
+3. Add MySQL database service
+4. Configure environment variables
+5. Import database schema
+6. Deploy application
+
+**See:** `docs/RAILWAY_DEPLOYMENT_GUIDE.md` for detailed Railway deployment instructions
 
 ### Default Credentials
 - Admin Username: `admin`
-- Admin Password: `1234`
+- Admin Password: `1234` (change in production!)
 
 ## Troubleshooting
 

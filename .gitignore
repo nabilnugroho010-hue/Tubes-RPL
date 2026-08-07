@@ -1,6 +1,14 @@
-# Database credentials
-koneksi.php
-pemesanan_pelanggan/koneksi.php
+# Environment variables (sensitive)
+.env
+.env.local
+.env.production
+.env.railway
+
+# Database credentials (local only - use config/database.php for production)
+# koneksi.php
+# pemesanan_pelanggan/koneksi.php
+xampp-credentials.txt
+credentials.txt
 
 # Payment proof images (sensitive user data)
 gambar/bukti/
