@@ -5,9 +5,9 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    # Redirect HTTP to HTTPS
-    RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    # Redirect HTTP to HTTPS (commented out for local development)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     
     # Remove trailing slash
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -29,11 +29,10 @@
     Deny from all
 </FilesMatch>
 
-# Protect config directory
-<Directory config>
-    Order allow,deny
-    Deny from all
-</Directory>
+# Protect config directory using RewriteRule
+<IfModule mod_rewrite.c>
+    RewriteRule ^config/ - [F,L]
+</IfModule>
 
 # PHP Settings
 <IfModule mod_php.c>
