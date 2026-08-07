@@ -91,11 +91,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
             font-family: Arial, sans-serif;
         }
         
+        * {
+            color: #333 !important;
+        }
+        
         .glass-container {
             background: white;
             border-radius: 12px;
             padding: 32px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-container h1,
+        .glass-container h3,
+        .glass-container p,
+        .glass-container label {
+            color: #333 !important;
         }
         
         .glass-card {
@@ -121,11 +132,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s;
+            color: #333 !important;
         }
         
         .category-tab.active {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            color: white !important;
         }
         
         .category-tab:hover:not(.active) {
@@ -161,20 +173,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         
         .menu-card-name {
             font-weight: 600;
-            color: #333;
+            color: #333 !important;
             font-size: 1rem;
         }
         
         .menu-card-price {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #667eea;
+            color: #667eea !important;
             margin-bottom: 12px;
         }
         
         .menu-card-type {
             font-size: 0.85rem;
-            color: #666;
+            color: #666 !important;
             margin-bottom: 8px;
         }
         
@@ -194,12 +206,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
             font-size: 1.2rem;
             font-weight: bold;
             transition: all 0.3s;
+            color: #333 !important;
         }
         
         .qty-btn:hover {
             border-color: #667eea;
             background: #667eea;
-            color: white;
+            color: white !important;
         }
         
         .qty-input {
@@ -210,6 +223,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
             border-radius: 8px;
             font-size: 1rem;
             font-weight: bold;
+            color: #333 !important;
         }
         
         .qty-input:focus {
@@ -234,11 +248,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         }
         
         .cart-summary #cartTotal {
-            color: white;
+            color: white !important;
         }
         
         .cart-summary p {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9) !important;
         }
         
         @media (max-width: 768px) {
@@ -260,7 +274,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         .no-menu-message {
             text-align: center;
             padding: 40px;
-            color: #666;
+            color: #666 !important;
         }
         
         .no-menu-message div {
