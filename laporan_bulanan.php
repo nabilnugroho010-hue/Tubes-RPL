@@ -236,9 +236,16 @@ $total_pendapatan = 0;
         <form method="get" class="d-flex align-center gap-2" style="flex-wrap: wrap;">
             <label style="color: #333 !important;">Bulan:</label>
             <select name="bulan" class="form-control" style="width: auto; color: #333 !important; background: white !important;">
-                <?php for($i=1; $i<=12; $i++): ?>
+                <?php 
+                $bulan_indo = [
+                    1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April',
+                    5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus',
+                    9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
+                ];
+                for($i=1; $i<=12; $i++): 
+                ?>
                 <option value="<?= str_pad($i, 2, '0', STR_PAD_LEFT) ?>" <?= $i == $bulan ? 'selected' : '' ?> style="color: #333 !important; background: white !important;">
-                    <?= date('F', mktime(0, 0, 0, $i, 1)) ?>
+                    <?= $bulan_indo[$i] ?>
                 </option>
                 <?php endfor; ?>
             </select>
