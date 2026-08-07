@@ -89,11 +89,19 @@ if(isset($_POST['masuk'])){
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s;
+            color: #333 !important;
+            background: white !important;
+        }
+        
+        .form-control::placeholder {
+            color: #999 !important;
         }
         
         .form-control:focus {
             outline: none;
             border-color: #667eea;
+            color: #333 !important;
+            background: white !important;
         }
         
         .btn-login {
