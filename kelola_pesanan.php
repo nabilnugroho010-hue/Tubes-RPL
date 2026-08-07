@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include "includes/auth.php";
 date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
@@ -27,6 +30,140 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan ORDER BY tgl_pesanan 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Pesanan - SPGFood</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            background-attachment: fixed !important;
+        }
+        
+        .sidebar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .sidebar-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .sidebar-logo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        }
+        
+        .sidebar-title {
+            color: #333 !important;
+        }
+        
+        .sidebar-menu-item {
+            color: #666 !important;
+        }
+        
+        .sidebar-menu-item:hover {
+            background: rgba(102, 126, 234, 0.1) !important;
+            color: #333 !important;
+        }
+        
+        .sidebar-menu-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+        }
+        
+        .main-content {
+            background: transparent !important;
+        }
+        
+        .glass-card {
+            background: white !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .glass-card:hover {
+            background: white !important;
+            border-color: #667eea !important;
+        }
+        
+        .header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .header-title {
+            color: white !important;
+        }
+        
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        .header-user {
+            background: rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .header-user:hover {
+            background: rgba(255, 255, 255, 0.3) !important;
+        }
+        
+        .header-user-name {
+            color: white !important;
+        }
+        
+        .header-user-role {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        .breadcrumb-item {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+        
+        .breadcrumb-item:hover {
+            color: white !important;
+        }
+        
+        .breadcrumb-item.active {
+            color: white !important;
+        }
+        
+        .breadcrumb-separator {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+        
+        .table {
+            background: white !important;
+        }
+        
+        .table thead {
+            background: rgba(102, 126, 234, 0.1) !important;
+            border-bottom: 2px solid #667eea !important;
+        }
+        
+        .table th {
+            color: #667eea !important;
+        }
+        
+        .table td {
+            color: #333 !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .table tbody tr:hover {
+            background: rgba(102, 126, 234, 0.05) !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #ff4466 0%, #cc3355 100%) !important;
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #ffaa00 0%, #cc8800 100%) !important;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #00c853 0%, #00a843 100%) !important;
+        }
+    </style>
 </head>
 <body>
 
