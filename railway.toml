@@ -6,3 +6,7 @@ PHP_VERSION = "8.1"
 
 [deploy]
 startCommand = "php -S 0.0.0.0:$PORT -t ."
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10

@@ -9,11 +9,6 @@
         "ext-mbstring": "*",
         "ext-json": "*"
     },
-    "autoload": {
-        "psr-4": {
-            "SPGFood\\": "src/"
-        }
-    },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

@@ -1,0 +1,18 @@
+# Ignore unnecessary files from Railway snapshot
+.git/
+.gitignore
+.env*
+*.log
+*.bak
+*.backup
+file sql/
+gambar/bukti/
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+docs/
+scripts/
