@@ -194,32 +194,32 @@ if(isset($_POST['simpan_bayar'])){
         <h3 style="margin-bottom: 16px; font-size: 1.1rem;">Informasi Pesanan #<?= $pesanan['id_pesanan'] ?></h3>
         <div class="grid grid-2">
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">Tanggal</p>
-                <p style="font-weight: 500;"><?= date('d F Y • H:i:s', strtotime($pesanan['tgl_pesanan'])) ?> WIB</p>
+                <p style="color: #666; margin-bottom: 4px;">Tanggal</p>
+                <p style="font-weight: 500; color: #333 !important;"><?= date('d F Y • H:i:s', strtotime($pesanan['tgl_pesanan'])) ?> WIB</p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">ID Pelanggan</p>
-                <p style="font-weight: 500; color: var(--neon-cyan);"><?= $pesanan['kode_pelanggan'] ?? '-' ?></p>
+                <p style="color: #666; margin-bottom: 4px;">ID Pelanggan</p>
+                <p style="font-weight: 500; color: #667eea !important;"><?= $pesanan['kode_pelanggan'] ?? '-' ?></p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">Nama Pelanggan</p>
-                <p style="font-weight: 500;"><?= $pesanan['nama_pelanggan'] ?></p>
+                <p style="color: #666; margin-bottom: 4px;">Nama Pelanggan</p>
+                <p style="font-weight: 500; color: #333 !important;"><?= $pesanan['nama_pelanggan'] ?></p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">No Meja</p>
-                <p style="font-weight: 500;"><?= $pesanan['no_meja'] ?></p>
+                <p style="color: #666; margin-bottom: 4px;">No Meja</p>
+                <p style="font-weight: 500; color: #333 !important;"><?= $pesanan['no_meja'] ?></p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">Status</p>
-                <p style="font-weight: 500;"><?= $pesanan['status'] ?? '-' ?></p>
+                <p style="color: #666; margin-bottom: 4px;">Status</p>
+                <p style="font-weight: 500; color: #333 !important;"><?= $pesanan['status'] ?? '-' ?></p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">Metode Pembayaran</p>
-                <p style="font-weight: 500;"><?= $pesanan['metode_pembayaran'] ?? '-' ?></p>
+                <p style="color: #666; margin-bottom: 4px;">Metode Pembayaran</p>
+                <p style="font-weight: 500; color: #333 !important;"><?= $pesanan['metode_pembayaran'] ?? '-' ?></p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">Total Bayar</p>
-                <p style="font-weight: 500; color: var(--neon-cyan);">Rp <?= number_format($pesanan['total_harga'],0,',','.') ?></p>
+                <p style="color: #666; margin-bottom: 4px;">Total Bayar</p>
+                <p style="font-weight: 500; color: #667eea !important;">Rp <?= number_format($pesanan['total_harga'],0,',','.') ?></p>
             </div>
         </div>
     </div>
@@ -243,7 +243,7 @@ if(isset($_POST['simpan_bayar'])){
                         <td><?= $d['nama_menu'] ?></td>
                         <td>Rp <?= number_format($d['harga'],0,',','.') ?></td>
                         <td><?= $d['jumlah'] ?></td>
-                        <td style="color: var(--neon-cyan); font-weight: 500;">Rp <?= number_format($d['harga'] * $d['jumlah'],0,',','.') ?></td>
+                        <td style="color: #667eea !important; font-weight: 500;">Rp <?= number_format($d['harga'] * $d['jumlah'],0,',','.') ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -274,20 +274,20 @@ if(isset($_POST['simpan_bayar'])){
         </form>
     </div>
     <?php } else { ?>
-    <div class="glass-card" style="background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.3);">
-        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: var(--success);">✅ Pembayaran Selesai</h3>
+    <div class="glass-card" style="background: rgba(0, 200, 83, 0.1); border-color: rgba(0, 200, 83, 0.3);">
+        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: #00c853 !important;">✅ Pembayaran Selesai</h3>
         <div class="grid grid-3">
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">Metode Pembayaran</p>
-                <p style="font-weight: 500;"><?= $bayar['metode'] ?></p>
+                <p style="color: #666; margin-bottom: 4px;">Metode Pembayaran</p>
+                <p style="font-weight: 500; color: #333 !important;"><?= $bayar['metode'] ?></p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">Tanggal Bayar</p>
-                <p style="font-weight: 500;"><?= $bayar['tgl_bayar'] ?></p>
+                <p style="color: #666; margin-bottom: 4px;">Tanggal Bayar</p>
+                <p style="font-weight: 500; color: #333 !important;"><?= $bayar['tgl_bayar'] ?></p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px;">Bukti</p>
-                <p style="font-weight: 500;"><?= $bayar['bukti_url'] ?></p>
+                <p style="color: #666; margin-bottom: 4px;">Bukti</p>
+                <p style="font-weight: 500; color: #333 !important;"><?= $bayar['bukti_url'] ?></p>
             </div>
         </div>
     </div>

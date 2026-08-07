@@ -205,7 +205,7 @@ $pesanan = mysqli_query($conn, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar
                     </td>
                     <td>
                         <?php if ($p['bukti_url']): ?>
-                        <a href="<?= $p['bukti_url'] ?>" target="_blank" class="btn btn-sm btn-secondary">📷 Lihat Bukti</a>
+                        <a href="<?= htmlspecialchars($p['bukti_url']) ?>" target="_blank" class="btn btn-sm btn-secondary">📷 Lihat Bukti</a>
                         <?php else: ?>
                         <span style="color: #666;">-</span>
                         <?php endif; ?>

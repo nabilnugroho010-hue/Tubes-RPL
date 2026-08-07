@@ -141,27 +141,27 @@ if(isset($_POST['cek_status'])){
         <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: #333 !important;">📋 Ringkasan Pesanan</h3>
         
         <!-- Informasi Pesanan -->
-        <div class="glass-card" style="background: rgba(0, 245, 255, 0.05); border-color: rgba(0, 245, 255, 0.2); margin-bottom: 16px;">
+        <div class="glass-card" style="background: rgba(102, 126, 234, 0.05); border-color: rgba(102, 126, 234, 0.2); margin-bottom: 16px;">
             <div class="grid grid-2">
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Nama Pelanggan</p>
-                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($data_pesanan['nama_pelanggan']) ?></p>
+                    <p style="color: #666; margin-bottom: 4px; font-size: 0.85rem;">Nama Pelanggan</p>
+                    <p style="font-weight: 500; margin: 0; color: #333 !important;"><?= htmlspecialchars($data_pesanan['nama_pelanggan']) ?></p>
                 </div>
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">No Meja</p>
-                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($data_pesanan['no_meja']) ?></p>
+                    <p style="color: #666; margin-bottom: 4px; font-size: 0.85rem;">No Meja</p>
+                    <p style="font-weight: 500; margin: 0; color: #333 !important;"><?= htmlspecialchars($data_pesanan['no_meja']) ?></p>
                 </div>
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Kode Pelanggan</p>
-                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= htmlspecialchars($data_pesanan['kode_pelanggan']) ?></p>
+                    <p style="color: #666; margin-bottom: 4px; font-size: 0.85rem;">Kode Pelanggan</p>
+                    <p style="font-weight: 500; color: #667eea !important; margin: 0;"><?= htmlspecialchars($data_pesanan['kode_pelanggan']) ?></p>
                 </div>
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Tanggal</p>
-                    <p style="font-weight: 500; margin: 0;"><?= date('d F Y • H:i:s', strtotime($data_pesanan['tgl_pesanan'])) ?> WIB</p>
+                    <p style="color: #666; margin-bottom: 4px; font-size: 0.85rem;">Tanggal</p>
+                    <p style="font-weight: 500; margin: 0; color: #333 !important;"><?= date('d F Y • H:i:s', strtotime($data_pesanan['tgl_pesanan'])) ?> WIB</p>
                 </div>
                 <div>
-                    <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Status</p>
-                    <p style="font-weight: 500; margin: 0;" data-status><?= htmlspecialchars($data_pesanan['status']) ?></p>
+                    <p style="color: #666; margin-bottom: 4px; font-size: 0.85rem;">Status</p>
+                    <p style="font-weight: 500; margin: 0; color: #333 !important;" data-status><?= htmlspecialchars($data_pesanan['status']) ?></p>
                 </div>
             </div>
         </div>
@@ -171,29 +171,29 @@ if(isset($_POST['cek_status'])){
             <?php 
             while ($d = mysqli_fetch_assoc($detail_pesanan)): 
             ?>
-            <div class="menu-item" style="background: rgba(255, 255, 255, 0.03);">
+            <div class="menu-item" style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin-bottom: 8px;">
                 <div class="menu-item-info">
-                    <div class="menu-item-name"><?= htmlspecialchars($d['nama_menu']) ?></div>
-                    <div class="menu-item-price">Rp <?= number_format($d['harga'], 0, ',', '.') ?></div>
+                    <div class="menu-item-name" style="color: #333 !important;"><?= htmlspecialchars($d['nama_menu']) ?></div>
+                    <div class="menu-item-price" style="color: #666 !important;">Rp <?= number_format($d['harga'], 0, ',', '.') ?></div>
                 </div>
                 <div class="menu-item-quantity">
                     <div style="text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: 600; color: var(--neon-cyan);"><?= $d['jumlah'] ?>x</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">Jumlah</div>
+                        <div style="font-size: 1.5rem; font-weight: 600; color: #667eea !important;"><?= $d['jumlah'] ?>x</div>
+                        <div style="font-size: 0.85rem; color: #666 !important;">Jumlah</div>
                     </div>
                 </div>
                 <div class="menu-item-subtotal" style="text-align: right;">
-                    <div style="font-size: 1.2rem; font-weight: 600; color: var(--neon-cyan);">Rp <?= number_format($d['harga'] * $d['jumlah'], 0, ',', '.') ?></div>
-                    <div style="font-size: 0.85rem; color: var(--text-muted);">Subtotal</div>
+                    <div style="font-size: 1.2rem; font-weight: 600; color: #667eea !important;">Rp <?= number_format($d['harga'] * $d['jumlah'], 0, ',', '.') ?></div>
+                    <div style="font-size: 0.85rem; color: #666 !important;">Subtotal</div>
                 </div>
             </div>
             <?php endwhile; ?>
         </div>
 
         <!-- Total -->
-        <div style="text-align: right; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--glass-border);">
-            <p style="color: var(--text-muted); margin-bottom: 4px;">Total Bayar</p>
-            <p style="font-size: 1.8rem; font-weight: 600; color: var(--neon-cyan); margin: 0;">Rp <?= number_format($data_pesanan['total_harga'], 0, ',', '.') ?></p>
+        <div style="text-align: right; margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0;">
+            <p style="color: #666 !important; margin-bottom: 4px;">Total Bayar</p>
+            <p style="font-size: 1.8rem; font-weight: 600; color: #667eea !important; margin: 0;">Rp <?= number_format($data_pesanan['total_harga'], 0, ',', '.') ?></p>
         </div>
     </div>
     <?php endif; ?>
