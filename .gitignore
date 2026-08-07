@@ -14,6 +14,12 @@ credentials.txt
 test.php
 test_db.php
 test_connection.php
+sql_console.php
+sql_console.bat
+open_sql_console.bat
+import_railway.php
+verify_railway.php
+test_railway_connection.php
 
 # Payment proof images (sensitive user data)
 gambar/bukti/
