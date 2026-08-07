@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validasi file
     $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/pjpeg', 'image/x-png'];
     $allowed_extensions = ['jpg', 'jpeg', 'png'];
-    $max_size = 5 * 1024 * 1024; // 5MB
+    $max_size = 10 * 1024 * 1024; // 10MB
     
     if ($bukti_error === UPLOAD_ERR_OK) {
         $file_ext = strtolower(pathinfo($bukti_name, PATHINFO_EXTENSION));
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $error = "Gagal mengupload file.";
             }
         } else {
-            $error = "Format file tidak valid atau ukuran terlalu besar (Max 5MB).";
+            $error = "Format file tidak valid atau ukuran terlalu besar (Max 10MB).";
         }
     } else {
         $error = "Error saat upload file.";
@@ -164,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-group">
             <label class="form-label">Upload Bukti Pembayaran</label>
             <input type="file" name="bukti" class="form-control" accept="image/*" required style="color: #333 !important; background: white !important;">
-            <p style="color: #666 !important; font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 5MB)</p>
+            <p style="color: #666 !important; font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 10MB)</p>
         </div>
         <button type="submit" class="btn btn-success w-100">
             <span> Konfirmasi Pembayaran</span>

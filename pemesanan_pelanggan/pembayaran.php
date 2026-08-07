@@ -410,7 +410,7 @@ if ($cek_pembayaran) {
             <div class="form-group">
                 <label class="form-label" style="color: #333 !important;">Upload Bukti Pembayaran</label>
                 <input type="file" name="bukti" class="form-control" accept="image/*" required style="color: #333 !important; background: white !important;">
-                <p style="color: #666 !important; font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 5MB)</p>
+                <p style="color: #666 !important; font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 10MB)</p>
             </div>
             <button type="submit" class="btn btn-success w-100">
                 <span>✅ Konfirmasi Pembayaran</span>
