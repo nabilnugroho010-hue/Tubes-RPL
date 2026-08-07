@@ -102,7 +102,7 @@
     <p class="subtitle">Restaurant Ordering System</p>
     
     <div class="options">
-        <a href="login.php" class="option-btn admin">
+        <a href="admin_login.php" class="option-btn admin">
             <span class="icon">👨‍💼</span>
             <span>Admin Panel</span>
         </a>
