@@ -156,6 +156,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-group">
             <label class="form-label">Upload Bukti Pembayaran</label>
             <input type="file" name="bukti" class="form-control" accept="image/*" required>
+            <p style="color: #666 !important; font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 5MB)</p>
+        </div>
+        <button type="submit" class="btn btn-success w-100">
+            <span> Konfirmasi Pembayaran</span>
+        </button>
+    </form>
+
+    <div style="text-align: center; margin-top: 24px;">
+        <a href="pembayaran.php" class="btn btn-outline">⬅️ Kembali</a>
+    </div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Upload Bukti Pembayaran</label>
+            <input type="file" name="bukti" class="form-control" accept="image/*" required>
             <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 5MB)</p>
         </div>
         <button type="submit" class="btn btn-success w-100">

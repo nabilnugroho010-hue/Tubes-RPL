@@ -355,15 +355,15 @@ if ($cek_pembayaran) {
         </div>
 
         <!-- Total -->
-        <div style="text-align: right; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--glass-border);">
-            <p style="color: var(--text-muted); margin-bottom: 4px;">Total Pembayaran</p>
-            <p style="font-size: 1.8rem; font-weight: 600; color: var(--neon-cyan); margin: 0;">Rp <?= number_format($pesanan['total_harga'], 0, ',', '.') ?></p>
+        <div style="text-align: right; margin-top: 16px; padding-top: 16px; border-top: 1px solid #e0e0e0;">
+            <p style="color: #666 !important; margin-bottom: 4px;">Total Pembayaran</p>
+            <p style="font-size: 1.8rem; font-weight: 600; color: #667eea !important; margin: 0;">Rp <?= number_format($pesanan['total_harga'], 0, ',', '.') ?></p>
         </div>
     </div>
 
     <div class="glass-card mb-3">
-        <h3 style="margin-bottom: 16px; font-size: 1.1rem;">📱 QRIS</h3>
-        <div style="text-align: center; padding: 24px; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-sm);">
+        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: #333 !important;">📱 QRIS</h3>
+        <div style="text-align: center; padding: 24px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e0e0e0;">
             <?php
             $qris_path = '../gambar/qris.jpeg';
             $qris_exists = file_exists(__DIR__ . '/../gambar/qris.jpeg');
@@ -371,46 +371,46 @@ if ($cek_pembayaran) {
             <?php if ($qris_exists): ?>
                 <img id="qrisImage" src="<?= $qris_path ?>" alt="QRIS" style="width: 200px; height: 200px; margin: 0 auto; border-radius: 12px; object-fit: contain;">
             <?php else: ?>
-                <div style="width: 200px; height: 200px; margin: 0 auto; border-radius: 12px; background: rgba(0, 245, 255, 0.1); display: flex; align-items: center; justify-content: center; border: 2px dashed rgba(0, 245, 255, 0.3);">
-                    <div style="text-align: center; color: var(--text-muted);">
+                <div style="width: 200px; height: 200px; margin: 0 auto; border-radius: 12px; background: #e0e0e0; display: flex; align-items: center; justify-content: center; border: 2px dashed #ccc;">
+                    <div style="text-align: center; color: #666 !important;">
                         <div style="font-size: 2rem; margin-bottom: 8px;">📱</div>
                         <div style="font-size: 0.8rem;">QRIS Image</div>
                         <div style="font-size: 0.7rem;">Not Available</div>
                     </div>
                 </div>
             <?php endif; ?>
-            <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.9rem;">Scan QRIS untuk pembayaran</p>
+            <p style="color: #666 !important; margin-top: 16px; font-size: 0.9rem;">Scan QRIS untuk pembayaran</p>
         </div>
     </div>
 
     <div class="glass-card mb-3">
-        <h3 style="margin-bottom: 16px; font-size: 1.1rem;">🏦 Transfer Bank BCA</h3>
-        <div style="background: rgba(0, 245, 255, 0.1); border: 1px solid rgba(0, 245, 255, 0.3); border-radius: var(--radius-sm); padding: 20px;">
+        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: #333 !important;">🏦 Transfer Bank BCA</h3>
+        <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px;">
             <div style="margin-bottom: 12px;">
-                <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.9rem;">Nomor Rekening</p>
-                <p style="font-size: 1.5rem; font-weight: 600; color: var(--neon-cyan); margin: 0; letter-spacing: 2px;">3780713479</p>
+                <p style="color: #666 !important; margin-bottom: 4px; font-size: 0.9rem;">Nomor Rekening</p>
+                <p style="font-size: 1.5rem; font-weight: 600; color: #667eea !important; margin: 0; letter-spacing: 2px;">3780713479</p>
             </div>
             <div>
-                <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.9rem;">Atas Nama</p>
-                <p style="font-size: 1.2rem; font-weight: 500; color: var(--text-primary); margin: 0;">NABIL NUGROHO</p>
+                <p style="color: #666 !important; margin-bottom: 4px; font-size: 0.9rem;">Atas Nama</p>
+                <p style="font-size: 1.2rem; font-weight: 500; color: #333 !important; margin: 0;">NABIL NUGROHO</p>
             </div>
         </div>
     </div>
 
     <div class="glass-card">
-        <h3 style="margin-bottom: 16px; font-size: 1.1rem;">📸 Konfirmasi Pembayaran</h3>
+        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: #333 !important;">📸 Konfirmasi Pembayaran</h3>
         <form method="post" action="konfirmasi_pembayaran.php" enctype="multipart/form-data">
             <div class="form-group">
-                <label class="form-label">Metode Pembayaran</label>
+                <label class="form-label" style="color: #333 !important;">Metode Pembayaran</label>
                 <select name="metode" class="form-control" required>
                     <option value="QRIS">QRIS</option>
                     <option value="Transfer BCA">Transfer BCA</option>
                 </select>
             </div>
             <div class="form-group">
-                <label class="form-label">Upload Bukti Pembayaran</label>
+                <label class="form-label" style="color: #333 !important;">Upload Bukti Pembayaran</label>
                 <input type="file" name="bukti" class="form-control" accept="image/*" required>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 5MB)</p>
+                <p style="color: #666 !important; font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 5MB)</p>
             </div>
             <button type="submit" class="btn btn-success w-100">
                 <span>✅ Konfirmasi Pembayaran</span>

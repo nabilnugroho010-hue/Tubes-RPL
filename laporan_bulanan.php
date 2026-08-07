@@ -167,6 +167,11 @@ $total_pendapatan = 0;
             background: white !important;
             border-color: #667eea !important;
         }
+        
+        .form-control option {
+            color: #333 !important;
+            background: white !important;
+        }
     </style>
 </head>
 <body>

@@ -33,14 +33,14 @@
         }
         
         .title {
-            color: white;
+            color: #333;
             font-size: 2rem;
             margin-bottom: 10px;
             font-weight: bold;
         }
         
         .subtitle {
-            color: rgba(255, 255, 255, 0.8);
+            color: #666;
             font-size: 1rem;
             margin-bottom: 40px;
         }
@@ -88,7 +88,7 @@
         }
         
         .footer {
-            color: rgba(255, 255, 255, 0.6);
+            color: #666;
             margin-top: 40px;
             font-size: 0.9rem;
         }
