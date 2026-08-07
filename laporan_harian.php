@@ -174,7 +174,7 @@ $total_pendapatan = 0;
 
 <!-- Main Content -->
 <main class="main-content">
-    <?php include "includes/heade#333 !impop>nt
+    <?php include "includes/header.php"; ?>
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
@@ -186,7 +186,7 @@ $total_pendapatan = 0;
     <!-- Date Filter -->
     <div class="glass-card mb-3">
         <form method="get" class="d-flex align-center gap-2" style="flex-wrap: wrap;">
-            <label style="color: var(--text-primary);">Tanggal:</label>
+            <label style="color: #333 !important;">Tanggal:</label>
             <input type="date" name="tanggal" value="<?= $hari ?>" class="form-control" style="width: auto;" required>
             <button type="submit" class="btn btn-primary">Tampilkan</button>
             <button type="button" onclick="window.print()" class="btn btn-secondary">🖨️ Cetak Laporan</button>
