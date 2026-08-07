@@ -104,6 +104,17 @@ if(isset($_POST['masuk'])){
             background: white !important;
         }
         
+        input[type="text"],
+        input[type="password"] {
+            color: #333 !important;
+            background: white !important;
+        }
+        
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #999 !important;
+        }
+        
         .btn-login {
             width: 100%;
             padding: 14px;

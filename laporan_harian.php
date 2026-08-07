@@ -181,6 +181,23 @@ $total_pendapatan = 0;
             color: #333 !important;
             background: white !important;
         }
+        
+        input[type="date"],
+        input[type="text"],
+        select {
+            color: #333 !important;
+            background: white !important;
+        }
+        
+        input[type="date"]::placeholder,
+        input[type="text"]::placeholder {
+            color: #999 !important;
+        }
+        
+        select option {
+            color: #333 !important;
+            background: white !important;
+        }
     </style>
 </head>
 <body>
