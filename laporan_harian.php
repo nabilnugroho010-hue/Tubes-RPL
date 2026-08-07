@@ -156,15 +156,25 @@ $total_pendapatan = 0;
         }
         
         .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
             color: #333 !important;
             background: white !important;
-            border: 1px solid #e0e0e0 !important;
+        }
+        
+        .form-control::placeholder {
+            color: #999 !important;
         }
         
         .form-control:focus {
+            outline: none;
+            border-color: #667eea;
             color: #333 !important;
             background: white !important;
-            border-color: #667eea !important;
         }
         
         .form-control option {
