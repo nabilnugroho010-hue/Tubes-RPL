@@ -1,14 +1,10 @@
 <?php
+include "includes/auth.php";
 session_start();
+date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Konfirmasi Pesanan";
 $pageSubtitle = "Verifikasi pembayaran pelanggan";
-
-// Cek apakah admin sudah login
-if (!isset($_SESSION['admin'])) {
-    header("Location: login.php");
-    exit;
-}
 
 // Ambil semua pesanan yang sudah dibayar
 $pesanan = mysqli_query($conn, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar.tgl_bayar 

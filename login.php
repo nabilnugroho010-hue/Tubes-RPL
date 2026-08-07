@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta');
 $pesan = "";
 $tampil = false;
 
@@ -30,36 +31,185 @@ if(isset($_POST['masuk'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin - SPGFood</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            padding: 20px;
+        }
+        
+        .login-card {
+            max-width: 450px;
+            width: 100%;
+            padding: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .login-logo {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .login-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .login-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        
+        .login-form {
+            margin-bottom: 32px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.2);
+        }
+        
+        .form-control::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: var(--bg-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 245, 255, 0.3);
+        }
+        
+        .login-footer {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(0, 245, 255, 0.1);
+        }
+        
+        .login-footer-text {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        
+        .btn-customer {
+            display: inline-block;
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-customer:hover {
+            background: var(--primary);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .login-card {
+                padding: 32px;
+            }
+            
+            .login-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="glass-container" style="max-width: 420px; margin: auto; padding: 40px;">
-    <div style="text-align: center; margin-bottom: 32px;">
-        <h1 style="font-size: 2rem; margin-bottom: 8px;">🔐 Login Admin</h1>
-        <p style="color: var(--text-muted);">Masuk ke dashboard SPGFood</p>
-    </div>
-
-    <form method="post" id="loginForm">
-        <div class="form-group">
-            <label class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" placeholder="Masukkan username" required autocomplete="off">
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-logo">🔐</div>
+            <h1 class="login-title">Welcome Back</h1>
+            <p class="login-subtitle">Login to access your admin dashboard</p>
         </div>
 
-        <div class="form-group">
-            <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Masukkan password" required autocomplete="off">
+        <form method="post" id="loginForm" class="login-form">
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Enter your username" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter your password" required autocomplete="off">
+            </div>
+
+            <button type="submit" name="masuk" class="btn-login">
+                <span>🚀 Login to Dashboard</span>
+            </button>
+        </form>
+
+        <div class="login-footer">
+            <p class="login-footer-text">Not an admin?</p>
+            <a href="pemesanan_pelanggan/pesan_pelanggan.php" class="btn-customer">
+                <span>🍽️ Order as Customer</span>
+            </a>
         </div>
-
-        <button type="submit" name="masuk" class="btn btn-primary w-100">
-            <span>Masuk</span>
-        </button>
-    </form>
-
-    <div style="text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--glass-border);">
-        <p style="color: var(--text-muted); margin-bottom: 12px;">Pelanggan?</p>
-        <a href="pemesanan_pelanggan/pesan_pelanggan.php" class="btn btn-outline w-100">
-            <span>🍽️ Pesan Menu</span>
-        </a>
     </div>
 </div>
 

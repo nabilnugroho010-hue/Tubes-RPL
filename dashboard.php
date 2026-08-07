@@ -1,12 +1,7 @@
 <?php
 session_start();
 include "koneksi.php";
-
-// Check if user is logged in
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header("Location: login.php");
-    exit;
-}
+include "includes/auth.php";
 
 // Ambil data statistik
 $total_menu = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM data_menu"));

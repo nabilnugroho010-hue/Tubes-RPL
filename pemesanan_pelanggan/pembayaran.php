@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta');
 include "../koneksi.php";
 
 // Cek apakah ada id_pesanan di session

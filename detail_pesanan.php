@@ -1,5 +1,7 @@
 <?php
+include "includes/auth.php";
 session_start();
+date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Detail Pesanan";
 $pageSubtitle = "Detail lengkap pesanan pelanggan";

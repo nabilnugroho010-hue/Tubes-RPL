@@ -1,5 +1,7 @@
 <?php
+include "includes/auth.php";
 session_start();
+date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Kelola Pesanan";
 $pageSubtitle = "Kelola dan update status pesanan";
@@ -16,7 +18,7 @@ if(isset($_GET['hapus_id'])){
     exit;
 }
 
-// Ambil data pesanan seperti biasa
+// Ambil data pesanan seperti biasa (semua status)
 $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan ORDER BY tgl_pesanan DESC, id_pesanan DESC");
 ?>
 <!DOCTYPE html>

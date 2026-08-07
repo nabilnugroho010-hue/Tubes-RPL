@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta');
 include "../koneksi.php";
 
 // Cek apakah ada kode pelanggan di session

@@ -2,6 +2,9 @@
 session_start();
 include "../koneksi.php"; // Tetap pakai path asli sesuai posisi file
 
+// Set timezone to Indonesia (WIB)
+date_default_timezone_set('Asia/Jakarta');
+
 // Set execution time limit untuk prevent timeout
 set_time_limit(300); // 5 minutes
 

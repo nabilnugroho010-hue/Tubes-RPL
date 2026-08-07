@@ -7,6 +7,9 @@
  * Uses MySQLi for compatibility with existing code
  */
 
+// Set timezone to Indonesia (WIB) - force override
+date_default_timezone_set('Asia/Jakarta');
+
 class DatabaseConfig {
     private static $instance = null;
     private $connection;
@@ -61,6 +64,9 @@ class DatabaseConfig {
             
             // Set charset to utf8mb4
             mysqli_set_charset($connection, 'utf8mb4');
+            
+            // Set timezone for MySQL connection
+            mysqli_query($connection, "SET time_zone = '+07:00'");
             
             return $connection;
         } catch (Exception $e) {

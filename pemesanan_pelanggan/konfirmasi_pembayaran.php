@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta');
 include "../koneksi.php";
 
 // Cek apakah ada id_pesanan di session
@@ -39,15 +40,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Generate nama file unik
             $file_ext = pathinfo($bukti_name, PATHINFO_EXTENSION);
             $new_filename = 'bukti_' . $id_pesanan . '_' . time() . '.' . $file_ext;
-            $upload_path = '../gambar/bukti/' . $new_filename;
+            
+            // Use absolute path for upload (works for both XAMPP and Railway)
+            $upload_dir = __DIR__ . '/../gambar/bukti/';
+            $upload_path = $upload_dir . $new_filename;
             
             // Buat folder jika belum ada
-            if (!file_exists('../gambar/bukti')) {
-                mkdir('../gambar/bukti', 0777, true);
+            if (!file_exists($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
             }
             
             // Upload file
             if (move_uploaded_file($bukti_tmp, $upload_path)) {
+                // Use relative path for database storage and serving
                 $bukti_url = 'gambar/bukti/' . $new_filename;
                 
                 // Cek apakah pembayaran sudah ada

@@ -34,6 +34,10 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
             <span class="sidebar-menu-icon">✅</span>
             <span class="sidebar-menu-text">Konfirmasi Pesanan</span>
         </a>
+        <a href="ubah_status.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'ubah_status.php' ? 'active' : '' ?>">
+            <span class="sidebar-menu-icon">🔄</span>
+            <span class="sidebar-menu-text">Update Status</span>
+        </a>
         <a href="laporan_harian.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'laporan_harian.php' ? 'active' : '' ?>">
             <span class="sidebar-menu-icon">📊</span>
             <span class="sidebar-menu-text">Laporan Harian</span>
