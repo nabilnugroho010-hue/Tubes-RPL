@@ -58,6 +58,8 @@ cd C:\xampp\htdocs\pemesanan\scripts
 
 Railway akan mulai clone repository dan setup build environment.
 
+**Catatan Penting:** Project sudah dikonfigurasi dengan `railway.toml` yang menetapkan PHP version ke 8.1 dan menggunakan NIXPACKS builder. Ini akan mencegah error "No version available for php >=7.4".
+
 ---
 
 ## 🗄️ SETUP DATABASE (10 Menit)
