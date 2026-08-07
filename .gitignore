@@ -1,0 +1,31 @@
+# Database credentials
+koneksi.php
+pemesanan_pelanggan/koneksi.php
+
+# Payment proof images (sensitive user data)
+gambar/bukti/
+*.jpeg
+*.jpg
+*.png
+*.gif
+
+# Backup files
+*.bak
+*.backup
+*.sql.bak
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+error_log

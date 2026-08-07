@@ -1,0 +1,130 @@
+<?php
+session_start();
+include "../koneksi.php";
+
+// Cek apakah ada id_pesanan di session
+if (!isset($_SESSION['id_pesanan'])) {
+    header("Location: pesan_pelanggan.php");
+    exit;
+}
+
+$id_pesanan = $_SESSION['id_pesanan'];
+
+// Ambil data pesanan berdasarkan id_pesanan dari session
+$pesanan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id_pesanan'"));
+
+if (!$pesanan) {
+    header("Location: pesan_pelanggan.php");
+    exit;
+}
+
+// Proses konfirmasi pembayaran
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $metode = $_POST['metode'];
+    $tgl_bayar = date('Y-m-d H:i:s');
+    
+    // Handle file upload
+    $bukti_file = $_FILES['bukti'];
+    $bukti_name = $bukti_file['name'];
+    $bukti_tmp = $bukti_file['tmp_name'];
+    $bukti_size = $bukti_file['size'];
+    $bukti_error = $bukti_file['error'];
+    
+    // Validasi file
+    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png'];
+    $max_size = 5 * 1024 * 1024; // 5MB
+    
+    if ($bukti_error === UPLOAD_ERR_OK) {
+        if (in_array($bukti_file['type'], $allowed_types) && $bukti_size <= $max_size) {
+            // Generate nama file unik
+            $file_ext = pathinfo($bukti_name, PATHINFO_EXTENSION);
+            $new_filename = 'bukti_' . $id_pesanan . '_' . time() . '.' . $file_ext;
+            $upload_path = '../gambar/bukti/' . $new_filename;
+            
+            // Buat folder jika belum ada
+            if (!file_exists('../gambar/bukti')) {
+                mkdir('../gambar/bukti', 0777, true);
+            }
+            
+            // Upload file
+            if (move_uploaded_file($bukti_tmp, $upload_path)) {
+                $bukti_url = 'gambar/bukti/' . $new_filename;
+                
+                // Cek apakah pembayaran sudah ada
+                $cek = mysqli_query($koneksi, "SELECT * FROM data_pembayaran WHERE id_pesanan = '$id_pesanan'");
+                
+                if (mysqli_num_rows($cek) == 0) {
+                    // Insert pembayaran baru
+                    mysqli_query($koneksi, "INSERT INTO data_pembayaran (id_pesanan, metode, bukti_url, tgl_bayar) 
+                                            VALUES ('$id_pesanan', '$metode', '$bukti_url', '$tgl_bayar')");
+                    
+                    // Update status pesanan dan metode pembayaran (single source of truth)
+                    mysqli_query($koneksi, "UPDATE data_pesanan SET status = 'Sudah Dibayar', metode_pembayaran = '$metode' WHERE id_pesanan = '$id_pesanan'");
+                    
+                    // Simpan kode_pelanggan ke session untuk riwayat pesanan
+                    $_SESSION['kode_pelanggan'] = $pesanan['kode_pelanggan'];
+                }
+                
+                // Redirect otomatis ke halaman pembayaran berhasil
+                header("Location: pembayaran_berhasil.php");
+                exit;
+            } else {
+                $error = "Gagal mengupload file.";
+            }
+        } else {
+            $error = "Format file tidak valid atau ukuran terlalu besar (Max 5MB).";
+        }
+    } else {
+        $error = "Error saat upload file.";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi Pembayaran - SPGFood</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="glass-container" style="max-width: 500px; margin: 40px auto; padding: 40px;">
+    <div style="text-align: center; margin-bottom: 32px;">
+        <h2 style="margin-bottom: 8px;"> Konfirmasi Pembayaran</h2>
+        <p style="color: var(--text-muted);">Upload bukti pembayaran Anda</p>
+    </div>
+
+    <?php if (isset($error)): ?>
+    <div class="glass-card" style="margin-bottom: 24px; background: rgba(255, 68, 102, 0.1); border-color: rgba(255, 68, 102, 0.3);">
+        <p style="color: var(--error); text-align: center; margin: 0;"><?= $error ?></p>
+    </div>
+    <?php endif; ?>
+
+    <form method="post" action="" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="form-label">Metode Pembayaran</label>
+            <select name="metode" class="form-control" required>
+                <option value="QRIS">QRIS</option>
+                <option value="Transfer BCA">Transfer BCA</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Upload Bukti Pembayaran</label>
+            <input type="file" name="bukti" class="form-control" accept="image/*" required>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 5MB)</p>
+        </div>
+        <button type="submit" class="btn btn-success w-100">
+            <span> Konfirmasi Pembayaran</span>
+        </button>
+    </form>
+
+    <div style="text-align: center; margin-top: 24px;">
+        <a href="pembayaran.php" class="btn btn-outline">⬅️ Kembali</a>
+    </div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+
+</body>
+</html>
