@@ -235,17 +235,17 @@ $total_pendapatan = 0;
     <div class="glass-card mb-3">
         <form method="get" class="d-flex align-center gap-2" style="flex-wrap: wrap;">
             <label style="color: #333 !important;">Bulan:</label>
-            <select name="bulan" class="form-control" style="width: auto;">
+            <select name="bulan" class="form-control" style="width: auto; color: #333 !important; background: white !important;">
                 <?php for($i=1; $i<=12; $i++): ?>
-                <option value="<?= str_pad($i, 2, '0', STR_PAD_LEFT) ?>" <?= $i == $bulan ? 'selected' : '' ?>>
+                <option value="<?= str_pad($i, 2, '0', STR_PAD_LEFT) ?>" <?= $i == $bulan ? 'selected' : '' ?> style="color: #333 !important; background: white !important;">
                     <?= date('F', mktime(0, 0, 0, $i, 1)) ?>
                 </option>
                 <?php endfor; ?>
             </select>
             <label style="color: #333 !important;">Tahun:</label>
-            <select name="tahun" class="form-control" style="width: auto;">
+            <select name="tahun" class="form-control" style="width: auto; color: #333 !important; background: white !important;">
                 <?php for($y=date('Y'); $y>=date('Y')-5; $y--): ?>
-                <option value="<?= $y ?>" <?= $y == $tahun ? 'selected' : '' ?>><?= $y ?></option>
+                <option value="<?= $y ?>" <?= $y == $tahun ? 'selected' : '' ?> style="color: #333 !important; background: white !important;"><?= $y ?></option>
                 <?php endfor; ?>
             </select>
             <button type="submit" class="btn btn-primary">Tampilkan</button>
