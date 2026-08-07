@@ -28,6 +28,9 @@ gambar/bukti/
 *.png
 *.gif
 
+# SQL files folder (local backups)
+file sql/
+
 # Backup files
 *.bak
 *.backup
