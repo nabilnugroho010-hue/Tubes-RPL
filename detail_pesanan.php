@@ -186,6 +186,31 @@ if(isset($_POST['simpan_bayar'])){
             background: white !important;
             border-color: #667eea !important;
         }
+        
+        .form-control option {
+            color: #333 !important;
+            background: white !important;
+        }
+        
+        input[type="text"],
+        select {
+            color: #333 !important;
+            background: white !important;
+        }
+        
+        input[type="text"]::placeholder {
+            color: #999 !important;
+        }
+        
+        select option {
+            color: #333 !important;
+            background: white !important;
+        }
+        
+        select:focus option:checked {
+            color: #333 !important;
+            background: white !important;
+        }
     </style>
 </head>
 <body>

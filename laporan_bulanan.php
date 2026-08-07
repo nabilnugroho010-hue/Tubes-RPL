@@ -199,6 +199,11 @@ $total_pendapatan = 0;
             color: #333 !important;
             background: white !important;
         }
+        
+        select:focus option:checked {
+            color: #333 !important;
+            background: white !important;
+        }
     </style>
 </head>
 <body>
