@@ -20,6 +20,7 @@ open_sql_console.bat
 import_railway.php
 verify_railway.php
 test_railway_connection.php
+test_timezone.php
 
 # Payment proof images (sensitive user data)
 gambar/bukti/
