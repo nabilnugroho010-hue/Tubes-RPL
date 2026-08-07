@@ -176,6 +176,22 @@ $menu = mysqli_query($conn, "SELECT * FROM data_menu ORDER BY id_menu DESC");
         .btn-success {
             background: linear-gradient(135deg, #00c853 0%, #00a843 100%) !important;
         }
+        
+        .form-control {
+            color: #333 !important;
+            background: white !important;
+            border: 1px solid #e0e0e0 !important;
+        }
+        
+        .form-control::placeholder {
+            color: #999 !important;
+        }
+        
+        .form-control:focus {
+            color: #333 !important;
+            background: white !important;
+            border-color: #667eea !important;
+        }
     </style>
 </head>
 <body>
