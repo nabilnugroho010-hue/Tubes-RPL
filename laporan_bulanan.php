@@ -204,6 +204,16 @@ $total_pendapatan = 0;
             color: #333 !important;
             background: white !important;
         }
+        
+        select.form-control {
+            color: #333 !important;
+            background: white !important;
+        }
+        
+        select.form-control option {
+            color: #333 !important;
+            background: white !important;
+        }
     </style>
 </head>
 <body>
