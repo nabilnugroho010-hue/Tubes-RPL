@@ -32,11 +32,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bukti_error = $bukti_file['error'];
     
     // Validasi file
-    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png'];
+    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/pjpeg', 'image/x-png'];
+    $allowed_extensions = ['jpg', 'jpeg', 'png'];
     $max_size = 5 * 1024 * 1024; // 5MB
     
     if ($bukti_error === UPLOAD_ERR_OK) {
-        if (in_array($bukti_file['type'], $allowed_types) && $bukti_size <= $max_size) {
+        $file_ext = strtolower(pathinfo($bukti_name, PATHINFO_EXTENSION));
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $detected_type = finfo_file($finfo, $bukti_tmp);
+        finfo_close($finfo);
+        
+        if ((in_array($bukti_file['type'], $allowed_types) || in_array($detected_type, $allowed_types)) && 
+            in_array($file_ext, $allowed_extensions) && 
+            $bukti_size <= $max_size) {
             // Generate nama file unik
             $file_ext = pathinfo($bukti_name, PATHINFO_EXTENSION);
             $new_filename = 'bukti_' . $id_pesanan . '_' . time() . '.' . $file_ext;

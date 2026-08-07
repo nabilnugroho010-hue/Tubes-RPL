@@ -150,7 +150,7 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan 
     <div class="glass-card mb-3">
         <form method="get" action="">
             <div class="d-flex gap-2">
-                <input type="text" name="kode" class="form-control" placeholder="Masukkan Kode Pelanggan" value="<?= htmlspecialchars($kode_pelanggan) ?>">
+                <input type="text" name="kode" class="form-control" placeholder="Masukkan Kode Pelanggan" value="<?= htmlspecialchars($kode_pelanggan) ?>" style="color: #333 !important; background: white !important;">
                 <button type="submit" class="btn btn-primary">Cari</button>
             </div>
         </form>
