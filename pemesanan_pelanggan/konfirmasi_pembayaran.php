@@ -11,7 +11,7 @@ if (!isset($_SESSION['id_pesanan'])) {
 $id_pesanan = $_SESSION['id_pesanan'];
 
 // Ambil data pesanan berdasarkan id_pesanan dari session
-$pesanan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id_pesanan'"));
+$pesanan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id_pesanan'"));
 
 if (!$pesanan) {
     header("Location: pesan_pelanggan.php");
@@ -51,15 +51,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $bukti_url = 'gambar/bukti/' . $new_filename;
                 
                 // Cek apakah pembayaran sudah ada
-                $cek = mysqli_query($koneksi, "SELECT * FROM data_pembayaran WHERE id_pesanan = '$id_pesanan'");
+                $cek = mysqli_query($conn, "SELECT * FROM data_pembayaran WHERE id_pesanan = '$id_pesanan'");
                 
                 if (mysqli_num_rows($cek) == 0) {
                     // Insert pembayaran baru
-                    mysqli_query($koneksi, "INSERT INTO data_pembayaran (id_pesanan, metode, bukti_url, tgl_bayar) 
+                    mysqli_query($conn, "INSERT INTO data_pembayaran (id_pesanan, metode, bukti_url, tgl_bayar) 
                                             VALUES ('$id_pesanan', '$metode', '$bukti_url', '$tgl_bayar')");
                     
                     // Update status pesanan dan metode pembayaran (single source of truth)
-                    mysqli_query($koneksi, "UPDATE data_pesanan SET status = 'Sudah Dibayar', metode_pembayaran = '$metode' WHERE id_pesanan = '$id_pesanan'");
+                    mysqli_query($conn, "UPDATE data_pesanan SET status = 'Sudah Dibayar', metode_pembayaran = '$metode' WHERE id_pesanan = '$id_pesanan'");
                     
                     // Simpan kode_pelanggan ke session untuk riwayat pesanan
                     $_SESSION['kode_pelanggan'] = $pesanan['kode_pelanggan'];

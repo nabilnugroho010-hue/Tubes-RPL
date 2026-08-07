@@ -11,7 +11,7 @@ if (!isset($_SESSION['id_pesanan'])) {
 $id_pesanan = $_SESSION['id_pesanan'];
 
 // Ambil data pesanan berdasarkan id_pesanan dari session
-$pesanan = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id_pesanan'"));
+$pesanan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id_pesanan'"));
 
 if (!$pesanan) {
     header("Location: pesan_pelanggan.php");
@@ -19,17 +19,17 @@ if (!$pesanan) {
 }
 
 // Ambil detail pesanan
-$detail = mysqli_query($koneksi, "SELECT d.*, m.nama_menu, m.harga 
+$detail = mysqli_query($conn, "SELECT d.*, m.nama_menu, m.harga 
                                    FROM rincian_pesanan d 
                                    JOIN data_menu m ON d.id_menu = m.id_menu 
                                    WHERE d.id_pesanan = '$id_pesanan'");
 
 // Cek apakah pembayaran sudah dikonfirmasi
-$cek_pembayaran = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM data_pembayaran WHERE id_pesanan = '$id_pesanan'"));
+$cek_pembayaran = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pembayaran WHERE id_pesanan = '$id_pesanan'"));
 
 // Update metode pembayaran di data_pesanan jika sudah ada
 if ($cek_pembayaran) {
-    mysqli_query($koneksi, "UPDATE data_pesanan SET metode_pembayaran = '" . $cek_pembayaran['metode'] . "' WHERE id_pesanan = '$id_pesanan'");
+    mysqli_query($conn, "UPDATE data_pesanan SET metode_pembayaran = '" . $cek_pembayaran['metode'] . "' WHERE id_pesanan = '$id_pesanan'");
     
     // Redirect ke halaman pembayaran berhasil jika pembayaran sudah selesai
     header("Location: pembayaran_berhasil.php");

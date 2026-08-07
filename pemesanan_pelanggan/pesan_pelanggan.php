@@ -2,6 +2,9 @@
 session_start();
 include "../koneksi.php"; // Tetap pakai path asli sesuai posisi file
 
+// Set execution time limit untuk prevent timeout
+set_time_limit(300); // 5 minutes
+
 $hari_ini = date('Y-m-d H:i:s');
 $pesan = "";
 
@@ -28,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         $tanggal = date('Ymd');
         
         // Gunakan MAX id_pesanan hari ini + 1 untuk memastikan unik
-        $cek = mysqli_query($koneksi, "SELECT MAX(id_pesanan) as max_id FROM data_pesanan WHERE DATE(tgl_pesanan) = CURDATE()");
+        $cek = mysqli_query($conn, "SELECT MAX(id_pesanan) as max_id FROM data_pesanan WHERE DATE(tgl_pesanan) = CURDATE()");
         $data_cek = mysqli_fetch_assoc($cek);
         $max_id = $data_cek['max_id'] ?? 0;
         
@@ -41,26 +44,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         $kode_pelanggan = "CUST-" . strtoupper(uniqid());
 
         // Simpan data utama pesanan dengan nomor pesanan otomatis
-        $simpan = mysqli_query($koneksi, "INSERT INTO data_pesanan 
+        $simpan = mysqli_query($conn, "INSERT INTO data_pesanan 
             (tgl_pesanan, nama_pelanggan, no_meja, kode_pelanggan, total_harga, status, nomor_pesanan) 
             VALUES ('$hari_ini', '$nama', '$meja', '$kode_pelanggan', 0, 'Menunggu pembayaran', '$nomor_pesanan')");
 
         if ($simpan) {
-            $id_pesanan = mysqli_insert_id($koneksi);
+            $id_pesanan = mysqli_insert_id($conn);
 
             // Simpan rincian menu yang dipesan
             foreach ($_POST['jumlah'] as $id_menu => $jumlah) {
                 $jumlah = (int)$jumlah;
                 if ($jumlah > 0) {
-                    $harga = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT harga FROM data_menu WHERE id_menu = '$id_menu'"));
+                    $harga = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga FROM data_menu WHERE id_menu = '$id_menu'"));
                     $subtotal = $harga['harga'] * $jumlah;
                     $total += $subtotal;
-                    mysqli_query($koneksi, "INSERT INTO rincian_pesanan (id_pesanan, id_menu, jumlah) VALUES ('$id_pesanan', '$id_menu', '$jumlah')");
+                    mysqli_query($conn, "INSERT INTO rincian_pesanan (id_pesanan, id_menu, jumlah) VALUES ('$id_pesanan', '$id_menu', '$jumlah')");
                 }
             }
 
             // Update total harga pesanan
-            mysqli_query($koneksi, "UPDATE data_pesanan SET total_harga = '$total' WHERE id_pesanan = '$id_pesanan'");
+            mysqli_query($conn, "UPDATE data_pesanan SET total_harga = '$total' WHERE id_pesanan = '$id_pesanan'");
 
             // Simpan id_pesanan ke session untuk redirect ke pembayaran
             $_SESSION['id_pesanan'] = $id_pesanan;
@@ -257,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
             </div>
 
             <?php
-            $ambil_menu = mysqli_query($koneksi, "SELECT * FROM data_menu WHERE status = 'Tersedia' ORDER BY jenis_menu ASC, nama_menu ASC");
+            $ambil_menu = mysqli_query($conn, "SELECT * FROM data_menu WHERE status = 'Tersedia' ORDER BY jenis_menu ASC, nama_menu ASC");
             if (mysqli_num_rows($ambil_menu) > 0):
             ?>
             <div class="menu-grid">

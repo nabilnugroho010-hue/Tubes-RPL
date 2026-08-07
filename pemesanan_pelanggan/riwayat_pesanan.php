@@ -12,7 +12,7 @@ if (!isset($_SESSION['kode_pelanggan']) && !isset($_GET['kode'])) {
 $kode_pelanggan = isset($_GET['kode']) ? trim($_GET['kode']) : $_SESSION['kode_pelanggan'];
 
 // Ambil semua pesanan berdasarkan kode pelanggan
-$pesanan = mysqli_query($koneksi, "SELECT * FROM data_pesanan WHERE kode_pelanggan = '$kode_pelanggan' ORDER BY tgl_pesanan DESC");
+$pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan = '$kode_pelanggan' ORDER BY tgl_pesanan DESC");
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -133,7 +133,7 @@ $pesanan = mysqli_query($koneksi, "SELECT * FROM data_pesanan WHERE kode_pelangg
         <?php while ($p = mysqli_fetch_assoc($pesanan)): ?>
             <?php
             // Ambil detail pesanan
-            $detail = mysqli_query($koneksi, "SELECT d.*, m.nama_menu, m.harga 
+            $detail = mysqli_query($conn, "SELECT d.*, m.nama_menu, m.harga 
                                                FROM rincian_pesanan d 
                                                JOIN data_menu m ON d.id_menu = m.id_menu 
                                                WHERE d.id_pesanan = '{$p['id_pesanan']}'");

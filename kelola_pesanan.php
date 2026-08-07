@@ -8,16 +8,16 @@ $pageSubtitle = "Kelola dan update status pesanan";
 if(isset($_GET['hapus_id'])){
     $id_hapus = $_GET['hapus_id'];
     // Hapus dulu rincian pesanan yang terhubung
-    mysqli_query($koneksi, "DELETE FROM rincian_pesanan WHERE id_pesanan = '$id_hapus'");
+    mysqli_query($conn, "DELETE FROM rincian_pesanan WHERE id_pesanan = '$id_hapus'");
     // Baru hapus data pesanan utamanya
-    mysqli_query($koneksi, "DELETE FROM data_pesanan WHERE id_pesanan = '$id_hapus'");
+    mysqli_query($conn, "DELETE FROM data_pesanan WHERE id_pesanan = '$id_hapus'");
     // Alihkan agar tidak hapus ulang saat refresh
     header("Location: kelola_pesanan.php?sukses_hapus=1");
     exit;
 }
 
 // Ambil data pesanan seperti biasa
-$pesanan = mysqli_query($koneksi, "SELECT * FROM data_pesanan ORDER BY tgl_pesanan DESC, id_pesanan DESC");
+$pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan ORDER BY tgl_pesanan DESC, id_pesanan DESC");
 ?>
 <!DOCTYPE html>
 <html lang="id">

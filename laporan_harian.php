@@ -7,7 +7,7 @@ $pageSubtitle = "Lihat laporan pendapatan harian";
 // Ambil tanggal yang dipilih, kalau tidak ada pakai hari ini
 $hari = isset($_GET['tanggal']) ? $_GET['tanggal'] : date('Y-m-d');
 
-$ambil = mysqli_query($koneksi, "SELECT id_pesanan, tgl_pesanan, kode_pelanggan, total_harga, nama_pelanggan, no_meja, status, nomor_pesanan
+$ambil = mysqli_query($conn, "SELECT id_pesanan, tgl_pesanan, kode_pelanggan, total_harga, nama_pelanggan, no_meja, status, nomor_pesanan
                                   FROM data_pesanan 
                                   WHERE DATE(tgl_pesanan) = '$hari' 
                                   ORDER BY tgl_pesanan DESC");

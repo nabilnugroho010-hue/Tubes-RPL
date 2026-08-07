@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_status'])) {
     $status_baru = $_POST['status_pesanan'];
 
     // Hanya update kolom yang ADA di tabel kamu
-    mysqli_query($koneksi, "UPDATE data_pesanan 
+    mysqli_query($conn, "UPDATE data_pesanan 
         SET status = '$status_baru' 
         WHERE id_pesanan = '$id_pesanan'");
 
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_status'])) {
 
 // Ambil data pesanan
 $id = $_GET['id'];
-$data = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id'"));
+$data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id'"));
 ?>
 <!DOCTYPE html>
 <html lang="id">

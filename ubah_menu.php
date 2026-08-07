@@ -7,7 +7,7 @@ $pageSubtitle = "Edit informasi menu yang ada";
 // Ambil data menu
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $ambil = mysqli_query($koneksi, "SELECT * FROM data_menu WHERE id_menu = '$id'");
+    $ambil = mysqli_query($conn, "SELECT * FROM data_menu WHERE id_menu = '$id'");
     $menu = mysqli_fetch_assoc($ambil);
 }
 
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_perubahan'])) {
     $harga = $_POST['harga'];
     $status = $_POST['status'];
 
-    mysqli_query($koneksi, "UPDATE data_menu SET 
+    mysqli_query($conn, "UPDATE data_menu SET 
                             nama_menu = '$nama_menu',
                             jenis_menu = '$jenis_menu',
                             harga = '$harga',

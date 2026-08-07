@@ -8,7 +8,7 @@ $pageSubtitle = "Lihat laporan pendapatan bulanan";
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
 $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
 
-$ambil = mysqli_query($koneksi, "SELECT id_pesanan, tgl_pesanan, kode_pelanggan, total_harga, nama_pelanggan, no_meja, status, nomor_pesanan
+$ambil = mysqli_query($conn, "SELECT id_pesanan, tgl_pesanan, kode_pelanggan, total_harga, nama_pelanggan, no_meja, status, nomor_pesanan
                                   FROM data_pesanan 
                                   WHERE MONTH(tgl_pesanan) = '$bulan' AND YEAR(tgl_pesanan) = '$tahun'
                                   ORDER BY tgl_pesanan DESC");

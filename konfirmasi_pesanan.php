@@ -11,7 +11,7 @@ if (!isset($_SESSION['admin'])) {
 }
 
 // Ambil semua pesanan yang sudah dibayar
-$pesanan = mysqli_query($koneksi, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar.tgl_bayar 
+$pesanan = mysqli_query($conn, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar.tgl_bayar 
                                   FROM data_pesanan p 
                                   LEFT JOIN data_pembayaran bayar ON p.id_pesanan = bayar.id_pesanan 
                                   WHERE p.status = 'Sudah Dibayar' 

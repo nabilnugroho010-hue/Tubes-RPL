@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_menu'])) {
     $harga = $_POST['harga'];
     $status = $_POST['status'];
 
-    mysqli_query($koneksi, "INSERT INTO data_menu (nama_menu, jenis_menu, harga, status) 
+    mysqli_query($conn, "INSERT INTO data_menu (nama_menu, jenis_menu, harga, status) 
                             VALUES ('$nama_menu', '$jenis_menu', '$harga', '$status')");
 
     $pesan = "Menu baru berhasil ditambahkan!";

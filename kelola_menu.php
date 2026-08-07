@@ -12,13 +12,13 @@ if(isset($_GET['hapus_id'])){
     $id_hapus = $_GET['hapus_id'];
     
     // Cek dulu apakah menu ini sudah ada di pesanan
-    $cek = mysqli_query($koneksi, "SELECT * FROM rincian_pesanan WHERE id_menu = '$id_hapus'");
+    $cek = mysqli_query($conn, "SELECT * FROM rincian_pesanan WHERE id_menu = '$id_hapus'");
     if(mysqli_num_rows($cek) > 0){
         $pesan = "Menu ini tidak dapat dihapus karena sudah tercatat dalam pesanan!";
         $tampil_notif = true;
     } else {
         // Jika belum ada, baru hapus
-        $hapus = mysqli_query($koneksi, "DELETE FROM data_menu WHERE id_menu = '$id_hapus'");
+        $hapus = mysqli_query($conn, "DELETE FROM data_menu WHERE id_menu = '$id_hapus'");
         if($hapus){
             $pesan = "Menu berhasil dihapus!";
             $tampil_notif = true;
@@ -30,7 +30,7 @@ if(isset($_GET['hapus_id'])){
 }
 
 // Ambil semua data menu dari database
-$menu = mysqli_query($koneksi, "SELECT * FROM data_menu ORDER BY id_menu DESC");
+$menu = mysqli_query($conn, "SELECT * FROM data_menu ORDER BY id_menu DESC");
 ?>
 <!DOCTYPE html>
 <html lang="id">

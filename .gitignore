@@ -5,8 +5,8 @@
 .env.railway
 
 # Database credentials (local only - use config/database.php for production)
-# koneksi.php
-# pemesanan_pelanggan/koneksi.php
+# Note: koneksi.php and pemesanan_pelanggan/koneksi.php are wrapper files
+# that use config/database.php, so they are safe to commit
 xampp-credentials.txt
 credentials.txt
 

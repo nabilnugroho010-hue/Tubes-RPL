@@ -4,6 +4,7 @@
  * Supports both environment variables and direct configuration
  * For Railway: Use environment variables
  * For XAMPP: Use direct configuration or create .env file
+ * Uses MySQLi for compatibility with existing code
  */
 
 class DatabaseConfig {
@@ -46,17 +47,23 @@ class DatabaseConfig {
         $config = $this->getEnvConfig();
         
         try {
-            $dsn = "mysql:host={$config['host']};port={$config['port']};dbname={$config['database']};charset=utf8mb4";
-            $options = [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES => false,
-                PDO::ATTR_PERSISTENT => false
-            ];
+            $connection = mysqli_connect(
+                $config['host'],
+                $config['username'],
+                $config['password'],
+                $config['database'],
+                $config['port']
+            );
             
-            $connection = new PDO($dsn, $config['username'], $config['password'], $options);
+            if (!$connection) {
+                throw new Exception("Database Connection Failed: " . mysqli_connect_error());
+            }
+            
+            // Set charset to utf8mb4
+            mysqli_set_charset($connection, 'utf8mb4');
+            
             return $connection;
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             die("Database Connection Failed: " . $e->getMessage());
         }
     }

@@ -3,9 +3,9 @@ session_start();
 include "koneksi.php";
 
 // Ambil data statistik
-$total_menu = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) as total FROM data_menu"));
-$total_pesanan_hari_ini = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COUNT(*) as total FROM data_pesanan WHERE DATE(tgl_pesanan) = CURDATE()"));
-$pendapatan_hari_ini = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT COALESCE(SUM(total_harga), 0) as total FROM data_pesanan WHERE DATE(tgl_pesanan) = CURDATE()"));
+$total_menu = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM data_menu"));
+$total_pesanan_hari_ini = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as total FROM data_pesanan WHERE DATE(tgl_pesanan) = CURDATE()"));
+$pendapatan_hari_ini = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COALESCE(SUM(total_harga), 0) as total FROM data_pesanan WHERE DATE(tgl_pesanan) = CURDATE()"));
 ?>
 <!DOCTYPE html>
 <html lang="id">

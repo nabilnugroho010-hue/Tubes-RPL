@@ -10,7 +10,7 @@ $data_pesanan = null;
 // Auto-check status dari URL parameter (setelah pembayaran) atau session
 if(isset($_GET['nomor']) && !empty($_GET['nomor'])){
     $nomor_pesanan = trim($_GET['nomor']);
-    $cek = mysqli_fetch_assoc(mysqli_query($koneksi, 
+    $cek = mysqli_fetch_assoc(mysqli_query($conn, 
         "SELECT * FROM data_pesanan WHERE nomor_pesanan = '$nomor_pesanan' LIMIT 1"));
     
     if($cek){
@@ -18,7 +18,7 @@ if(isset($_GET['nomor']) && !empty($_GET['nomor'])){
         $id_pesanan = $cek['id_pesanan'];
         
         // Ambil detail menu dari database
-        $detail_pesanan = mysqli_query($koneksi, 
+        $detail_pesanan = mysqli_query($conn, 
             "SELECT d.*, m.nama_menu, m.harga 
              FROM rincian_pesanan d 
              JOIN data_menu m ON d.id_menu = m.id_menu 
@@ -32,14 +32,14 @@ if(isset($_GET['nomor']) && !empty($_GET['nomor'])){
 // Cek dari session id_pesanan (jika ada)
 elseif(isset($_SESSION['id_pesanan'])){
     $id_pesanan = $_SESSION['id_pesanan'];
-    $cek = mysqli_fetch_assoc(mysqli_query($koneksi, 
+    $cek = mysqli_fetch_assoc(mysqli_query($conn, 
         "SELECT * FROM data_pesanan WHERE id_pesanan = '$id_pesanan'"));
     
     if($cek){
         $data_pesanan = $cek;
         
         // Ambil detail menu dari database
-        $detail_pesanan = mysqli_query($koneksi, 
+        $detail_pesanan = mysqli_query($conn, 
             "SELECT d.*, m.nama_menu, m.harga 
              FROM rincian_pesanan d 
              JOIN data_menu m ON d.id_menu = m.id_menu 
@@ -54,7 +54,7 @@ elseif(isset($_SESSION['id_pesanan'])){
 // Manual check dari form
 if(isset($_POST['cek_status'])){
     $kode = trim($_POST['kode_cek']);
-    $cek = mysqli_fetch_assoc(mysqli_query($koneksi, 
+    $cek = mysqli_fetch_assoc(mysqli_query($conn, 
         "SELECT * FROM data_pesanan WHERE kode_pelanggan = '$kode' ORDER BY id_pesanan DESC LIMIT 1"));
     
     if($cek){
@@ -62,7 +62,7 @@ if(isset($_POST['cek_status'])){
         $id_pesanan = $cek['id_pesanan'];
         
         // Ambil detail menu dari database
-        $detail_pesanan = mysqli_query($koneksi, 
+        $detail_pesanan = mysqli_query($conn, 
             "SELECT d.*, m.nama_menu, m.harga 
              FROM rincian_pesanan d 
              JOIN data_menu m ON d.id_menu = m.id_menu 
