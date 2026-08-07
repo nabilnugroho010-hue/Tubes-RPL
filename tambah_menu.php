@@ -85,47 +85,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_menu'])) {
         }
         
         .header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
         }
         
         .header-title {
-            color: white !important;
+            color: #333 !important;
         }
         
         .header-subtitle {
-            color: rgba(255, 255, 255, 0.8) !important;
+            color: #666 !important;
         }
         
         .header-user {
-            background: rgba(255, 255, 255, 0.2) !important;
+            background: rgba(255, 255, 255, 0.95) !important;
         }
         
         .header-user:hover {
-            background: rgba(255, 255, 255, 0.3) !important;
+            background: white !important;
         }
         
         .header-user-name {
-            color: white !important;
+            color: #333 !important;
         }
         
         .header-user-role {
-            color: rgba(255, 255, 255, 0.8) !important;
+            color: #666 !important;
         }
         
         .breadcrumb-item {
-            color: rgba(255, 255, 255, 0.7) !important;
+            color: #666 !important;
         }
         
         .breadcrumb-item:hover {
-            color: white !important;
+            color: #333 !important;
         }
         
         .breadcrumb-item.active {
-            color: white !important;
+            color: #333 !important;
         }
         
         .breadcrumb-separator {
-            color: rgba(255, 255, 255, 0.7) !important;
+            color: #666 !important;
         }
         
         .btn-primary {
