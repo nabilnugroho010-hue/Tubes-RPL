@@ -13,8 +13,8 @@ $pesan = "";
 
 // Hanya jalankan proses simpan jika tombol KIRIM ditekan
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
-    $nama = trim($_POST['nama_lengkap']);
-    $meja = trim($_POST['nomor_meja']);
+    $nama = mysqli_real_escape_string($conn, trim($_POST['nama_lengkap']));
+    $meja = mysqli_real_escape_string($conn, trim($_POST['nomor_meja']));
     $total = 0;
     $ada_menu = false;
 
@@ -47,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
         $kode_pelanggan = "CUST-" . strtoupper(uniqid());
 
         // Simpan data utama pesanan dengan nomor pesanan otomatis
-        $simpan = mysqli_query($conn, "INSERT INTO data_pesanan 
-            (tgl_pesanan, nama_pelanggan, no_meja, kode_pelanggan, total_harga, status, nomor_pesanan) 
+        $simpan = mysqli_query($conn, "INSERT INTO data_pesanan
+            (tgl_pesanan, nama_pelanggan, no_meja, kode_pelanggan, total_harga, status, nomor_pesanan)
             VALUES ('$hari_ini', '$nama', '$meja', '$kode_pelanggan', 0, 'Menunggu pembayaran', '$nomor_pesanan')");
 
         if ($simpan) {
@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
 
             // Simpan rincian menu yang dipesan
             foreach ($_POST['jumlah'] as $id_menu => $jumlah) {
+                $id_menu = mysqli_real_escape_string($conn, $id_menu);
                 $jumlah = (int)$jumlah;
                 if ($jumlah > 0) {
                     $harga = mysqli_fetch_assoc(mysqli_query($conn, "SELECT harga FROM data_menu WHERE id_menu = '$id_menu'"));
@@ -223,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
 
     <?php if (!empty($error)): ?>
     <div class="glass-card" style="margin-bottom: 24px; background: rgba(255, 68, 102, 0.1); border-color: rgba(255, 68, 102, 0.3);">
-        <p style="color: var(--error); text-align: center; margin: 0; line-height: 1.6;"><?= $error ?></p>
+        <p style="color: var(--error); text-align: center; margin: 0; line-height: 1.6;"><?= htmlspecialchars($error) ?></p>
     </div>
     <?php endif; ?>
 
@@ -268,10 +269,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
             ?>
             <div class="menu-grid">
                 <?php while ($menu = mysqli_fetch_assoc($ambil_menu)): ?>
-                <div class="menu-card menu-item" data-category="<?= $menu['jenis_menu'] ?>">
+                <div class="menu-card menu-item" data-category="<?= htmlspecialchars($menu['jenis_menu']) ?>">
                     <div class="menu-card-header">
-                        <div class="menu-card-name"><?= $menu['nama_menu'] ?></div>
-                        <span class="menu-card-type"><?= $menu['jenis_menu'] ?></span>
+                        <div class="menu-card-name"><?= htmlspecialchars($menu['nama_menu']) ?></div>
+                        <span class="menu-card-type"><?= htmlspecialchars($menu['jenis_menu']) ?></span>
                     </div>
                     <div class="menu-card-price">Rp <?= number_format($menu['harga'], 0, ',', '.') ?></div>
                     <div class="menu-card-quantity">

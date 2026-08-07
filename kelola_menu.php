@@ -11,8 +11,8 @@ $tampil_notif = false;
 
 // Proses hapus data
 if(isset($_GET['hapus_id'])){
-    $id_hapus = $_GET['hapus_id'];
-    
+    $id_hapus = mysqli_real_escape_string($conn, $_GET['hapus_id']);
+
     // Cek dulu apakah menu ini sudah ada di pesanan
     $cek = mysqli_query($conn, "SELECT * FROM rincian_pesanan WHERE id_menu = '$id_hapus'");
     if(mysqli_num_rows($cek) > 0){

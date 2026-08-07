@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 include "../koneksi.php";
 
 if (isset($_GET['id_pesanan'])) {
-    $id_pesanan = $_GET['id_pesanan'];
+    $id_pesanan = mysqli_real_escape_string($conn, $_GET['id_pesanan']);
     $query = mysqli_query($conn, "SELECT status, metode_pembayaran FROM data_pesanan WHERE id_pesanan = '$id_pesanan'");
     $data = mysqli_fetch_assoc($query);
     
@@ -18,7 +18,7 @@ if (isset($_GET['id_pesanan'])) {
         echo json_encode(['success' => false, 'message' => 'Pesanan tidak ditemukan']);
     }
 } elseif (isset($_GET['kode_pelanggan'])) {
-    $kode = $_GET['kode_pelanggan'];
+    $kode = mysqli_real_escape_string($conn, $_GET['kode_pelanggan']);
     $query = mysqli_query($conn, "SELECT id_pesanan, status, metode_pembayaran, nama_pelanggan, no_meja, total_harga, tgl_pesanan, kode_pelanggan, nomor_pesanan FROM data_pesanan WHERE kode_pelanggan = '$kode' ORDER BY id_pesanan DESC LIMIT 1");
     $data = mysqli_fetch_assoc($query);
     

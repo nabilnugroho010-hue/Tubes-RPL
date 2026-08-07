@@ -73,15 +73,15 @@ if ($cek_pembayaran) {
             <div class="grid grid-2">
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Nama Pelanggan</p>
-                    <p style="font-weight: 500; margin: 0;"><?= $pesanan['nama_pelanggan'] ?></p>
+                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($pesanan['nama_pelanggan']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">No Meja</p>
-                    <p style="font-weight: 500; margin: 0;"><?= $pesanan['no_meja'] ?></p>
+                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($pesanan['no_meja']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Kode Pelanggan</p>
-                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= $pesanan['kode_pelanggan'] ?></p>
+                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= htmlspecialchars($pesanan['kode_pelanggan']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Tanggal</p>
@@ -89,7 +89,7 @@ if ($cek_pembayaran) {
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Status</p>
-                    <p style="font-weight: 500; margin: 0;"><?= $pesanan['status'] ?></p>
+                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($pesanan['status']) ?></p>
                 </div>
             </div>
         </div>
@@ -102,7 +102,7 @@ if ($cek_pembayaran) {
             ?>
             <div class="menu-item" style="background: rgba(255, 255, 255, 0.03);">
                 <div class="menu-item-info">
-                    <div class="menu-item-name"><?= $d['nama_menu'] ?></div>
+                    <div class="menu-item-name"><?= htmlspecialchars($d['nama_menu']) ?></div>
                     <div class="menu-item-price">Rp <?= number_format($d['harga'], 0, ',', '.') ?></div>
                 </div>
                 <div class="menu-item-quantity">
@@ -129,7 +129,21 @@ if ($cek_pembayaran) {
     <div class="glass-card mb-3">
         <h3 style="margin-bottom: 16px; font-size: 1.1rem;">📱 QRIS</h3>
         <div style="text-align: center; padding: 24px; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-sm);">
-            <img id="qrisImage" src="../gambar/qris.jpeg" alt="QRIS" style="width: 200px; height: 200px; margin: 0 auto; border-radius: 12px; object-fit: contain;">
+            <?php
+            $qris_path = '../gambar/qris.jpeg';
+            $qris_exists = file_exists(__DIR__ . '/../gambar/qris.jpeg');
+            ?>
+            <?php if ($qris_exists): ?>
+                <img id="qrisImage" src="<?= $qris_path ?>" alt="QRIS" style="width: 200px; height: 200px; margin: 0 auto; border-radius: 12px; object-fit: contain;">
+            <?php else: ?>
+                <div style="width: 200px; height: 200px; margin: 0 auto; border-radius: 12px; background: rgba(0, 245, 255, 0.1); display: flex; align-items: center; justify-content: center; border: 2px dashed rgba(0, 245, 255, 0.3);">
+                    <div style="text-align: center; color: var(--text-muted);">
+                        <div style="font-size: 2rem; margin-bottom: 8px;">📱</div>
+                        <div style="font-size: 0.8rem;">QRIS Image</div>
+                        <div style="font-size: 0.7rem;">Not Available</div>
+                    </div>
+                </div>
+            <?php endif; ?>
             <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.9rem;">Scan QRIS untuk pembayaran</p>
         </div>
     </div>

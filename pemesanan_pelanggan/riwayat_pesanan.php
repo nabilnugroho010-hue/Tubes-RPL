@@ -143,7 +143,7 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan 
             <div class="history-card">
                 <div class="history-header">
                     <div>
-                        <div class="history-id">#<?= $p['nomor_pesanan'] ?? $p['id_pesanan'] ?></div>
+                        <div class="history-id">#<?= htmlspecialchars($p['nomor_pesanan'] ?? $p['id_pesanan']) ?></div>
                         <div class="history-date"><?= date('d F Y • H:i', strtotime($p['tgl_pesanan'])) ?> WIB</div>
                     </div>
                     <div>
@@ -153,25 +153,25 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan 
                         elseif (strpos($p['status'], 'Dibayar') !== false) $statusClass = 'status-paid';
                         elseif (strpos($p['status'], 'Selesai') !== false) $statusClass = 'status-completed';
                         ?>
-                        <span class="history-status <?= $statusClass ?>"><?= $p['status'] ?></span>
+                        <span class="history-status <?= $statusClass ?>"><?= htmlspecialchars($p['status']) ?></span>
                     </div>
                 </div>
-                
+
                 <div class="history-items">
                     <?php while ($d = mysqli_fetch_assoc($detail)): ?>
                     <div class="history-item">
-                        <span><?= $d['nama_menu'] ?> x<?= $d['jumlah'] ?></span>
+                        <span><?= htmlspecialchars($d['nama_menu']) ?> x<?= $d['jumlah'] ?></span>
                         <span style="color: var(--neon-cyan);">Rp <?= number_format($d['harga'] * $d['jumlah'], 0, ',', '.') ?></span>
                     </div>
                     <?php endwhile; ?>
                 </div>
-                
+
                 <div class="history-total">
                     <div>
                         <span style="color: var(--text-muted);">Total:</span>
                         <span style="color: var(--neon-cyan); font-weight: 600; font-size: 1.2rem;">Rp <?= number_format($p['total_harga'], 0, ',', '.') ?></span>
                     </div>
-                    <a href="cek_status.php?nomor=<?= $p['nomor_pesanan'] ?>" class="btn btn-sm btn-outline">Lihat Detail</a>
+                    <a href="cek_status.php?nomor=<?= htmlspecialchars($p['nomor_pesanan']) ?>" class="btn btn-sm btn-outline">Lihat Detail</a>
                 </div>
             </div>
         <?php endwhile; ?>

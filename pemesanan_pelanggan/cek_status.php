@@ -106,15 +106,15 @@ if(isset($_POST['cek_status'])){
             <div class="grid grid-2">
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Nama Pelanggan</p>
-                    <p style="font-weight: 500; margin: 0;"><?= $data_pesanan['nama_pelanggan'] ?></p>
+                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($data_pesanan['nama_pelanggan']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">No Meja</p>
-                    <p style="font-weight: 500; margin: 0;"><?= $data_pesanan['no_meja'] ?></p>
+                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($data_pesanan['no_meja']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Kode Pelanggan</p>
-                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= $data_pesanan['kode_pelanggan'] ?></p>
+                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= htmlspecialchars($data_pesanan['kode_pelanggan']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Tanggal</p>
@@ -122,7 +122,7 @@ if(isset($_POST['cek_status'])){
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Status</p>
-                    <p style="font-weight: 500; margin: 0;" data-status><?= $data_pesanan['status'] ?></p>
+                    <p style="font-weight: 500; margin: 0;" data-status><?= htmlspecialchars($data_pesanan['status']) ?></p>
                 </div>
             </div>
         </div>
@@ -134,7 +134,7 @@ if(isset($_POST['cek_status'])){
             ?>
             <div class="menu-item" style="background: rgba(255, 255, 255, 0.03);">
                 <div class="menu-item-info">
-                    <div class="menu-item-name"><?= $d['nama_menu'] ?></div>
+                    <div class="menu-item-name"><?= htmlspecialchars($d['nama_menu']) ?></div>
                     <div class="menu-item-price">Rp <?= number_format($d['harga'], 0, ',', '.') ?></div>
                 </div>
                 <div class="menu-item-quantity">
@@ -188,8 +188,8 @@ if(isset($_POST['cek_status'])){
 <?php if($data_pesanan): ?>
 document.addEventListener('DOMContentLoaded', function() {
     const idPesanan = <?= $data_pesanan['id_pesanan'] ?>;
-    const kodePelanggan = '<?= $data_pesanan['kode_pelanggan'] ?>';
-    
+    const kodePelanggan = '<?= htmlspecialchars($data_pesanan['kode_pelanggan'], ENT_QUOTES) ?>';
+
     // Start polling for status updates
     const poller = new StatusPoller({
         idPesanan: idPesanan,

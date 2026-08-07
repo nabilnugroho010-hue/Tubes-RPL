@@ -106,19 +106,19 @@ $cek_pembayaran = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pem
             <div class="grid grid-2">
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Nama Pelanggan</p>
-                    <p style="font-weight: 500; margin: 0;"><?= $pesanan['nama_pelanggan'] ?></p>
+                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($pesanan['nama_pelanggan']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">No Meja</p>
-                    <p style="font-weight: 500; margin: 0;"><?= $pesanan['no_meja'] ?></p>
+                    <p style="font-weight: 500; margin: 0;"><?= htmlspecialchars($pesanan['no_meja']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Kode Pelanggan</p>
-                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= $pesanan['kode_pelanggan'] ?></p>
+                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= htmlspecialchars($pesanan['kode_pelanggan']) ?></p>
                 </div>
                 <div>
                     <p style="color: var(--text-muted); margin-bottom: 4px; font-size: 0.85rem;">Nomor Pesanan</p>
-                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= $pesanan['nomor_pesanan'] ?? '#' . $pesanan['id_pesanan'] ?></p>
+                    <p style="font-weight: 500; color: var(--neon-cyan); margin: 0;"><?= htmlspecialchars($pesanan['nomor_pesanan'] ?? '#' . $pesanan['id_pesanan']) ?></p>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@ $cek_pembayaran = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pem
             <div class="glass-card" style="background: rgba(0, 255, 136, 0.1); border-color: rgba(0, 255, 136, 0.3); padding: 16px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                     <span style="color: var(--text-muted);">Metode Pembayaran</span>
-                    <span style="font-weight: 500; color: var(--success);"><?= $cek_pembayaran['metode'] ?></span>
+                    <span style="font-weight: 500; color: var(--success);"><?= htmlspecialchars($cek_pembayaran['metode']) ?></span>
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span style="color: var(--text-muted);">Tanggal Bayar</span>

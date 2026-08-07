@@ -8,7 +8,7 @@ $pageSubtitle = "Kelola dan update status pesanan";
 
 // Proses hapus satu data saja
 if(isset($_GET['hapus_id'])){
-    $id_hapus = $_GET['hapus_id'];
+    $id_hapus = mysqli_real_escape_string($conn, $_GET['hapus_id']);
     // Hapus dulu rincian pesanan yang terhubung
     mysqli_query($conn, "DELETE FROM rincian_pesanan WHERE id_pesanan = '$id_hapus'");
     // Baru hapus data pesanan utamanya

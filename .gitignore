@@ -23,10 +23,12 @@ test_railway_connection.php
 
 # Payment proof images (sensitive user data)
 gambar/bukti/
-*.jpeg
-*.jpg
-*.png
-*.gif
+
+# Ignore specific root image files
+bg_login.png
+
+# Keep QRIS image for payment
+!gambar/qris.jpeg
 
 # SQL files folder (local backups)
 file sql/

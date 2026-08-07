@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_pesanan'])) {
     exit;
 }
 
-$id_pesanan = $_SESSION['id_pesanan'];
+$id_pesanan = mysqli_real_escape_string($conn, $_SESSION['id_pesanan']);
 
 // Ambil data pesanan berdasarkan id_pesanan dari session
 $pesanan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id_pesanan'"));
@@ -21,7 +21,7 @@ if (!$pesanan) {
 
 // Proses konfirmasi pembayaran
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $metode = $_POST['metode'];
+    $metode = mysqli_real_escape_string($conn, $_POST['metode']);
     $tgl_bayar = date('Y-m-d H:i:s');
     
     // Handle file upload
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Buat folder jika belum ada
             if (!file_exists($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
+                mkdir($upload_dir, 0755, true);
             }
             
             // Upload file
@@ -57,12 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 // Cek apakah pembayaran sudah ada
                 $cek = mysqli_query($conn, "SELECT * FROM data_pembayaran WHERE id_pesanan = '$id_pesanan'");
-                
+
                 if (mysqli_num_rows($cek) == 0) {
                     // Insert pembayaran baru
-                    mysqli_query($conn, "INSERT INTO data_pembayaran (id_pesanan, metode, bukti_url, tgl_bayar) 
+                    mysqli_query($conn, "INSERT INTO data_pembayaran (id_pesanan, metode, bukti_url, tgl_bayar)
                                             VALUES ('$id_pesanan', '$metode', '$bukti_url', '$tgl_bayar')");
-                    
+
                     // Update status pesanan dan metode pembayaran (single source of truth)
                     mysqli_query($conn, "UPDATE data_pesanan SET status = 'Sudah Dibayar', metode_pembayaran = '$metode' WHERE id_pesanan = '$id_pesanan'");
                     
