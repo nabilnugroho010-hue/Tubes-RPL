@@ -1,28 +1,31 @@
 <?php
 include "includes/auth.php";
-session_start();
 date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Detail Pesanan";
 $pageSubtitle = "Detail lengkap pesanan pelanggan";
 
-$id = $_GET['id'];
+if (!isset($_GET['id'])) {
+    header("Location: kelola_pesanan.php");
+    exit;
+}
+$id = mysqli_real_escape_string($conn, $_GET['id']);
 $pesanan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id'"));
-$detail = mysqli_query($conn, "SELECT d.*, m.nama_menu, m.harga 
-                                   FROM rincian_pesanan d 
-                                   JOIN data_menu m ON d.id_menu = m.id_menu 
+$detail = mysqli_query($conn, "SELECT d.*, m.nama_menu, m.harga
+                                   FROM rincian_pesanan d
+                                   JOIN data_menu m ON d.id_menu = m.id_menu
                                    WHERE d.id_pesanan = '$id'");
 $bayar = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pembayaran WHERE id_pesanan = '$id'"));
 
 // Proses simpan pembayaran
 if(isset($_POST['simpan_bayar'])){
-    $metode = $_POST['metode'];
-    $bukti = $_POST['bukti_url'];
-    mysqli_query($conn, "INSERT INTO data_pembayaran (id_pesanan, metode, bukti_url, tgl_bayar) 
+    $metode = mysqli_real_escape_string($conn, $_POST['metode']);
+    $bukti = mysqli_real_escape_string($conn, $_POST['bukti_url']);
+    mysqli_query($conn, "INSERT INTO data_pembayaran (id_pesanan, metode, bukti_url, tgl_bayar)
                             VALUES ('$id', '$metode', '$bukti', NOW())");
     // Update status dan metode pembayaran di data_pesanan sebagai single source of truth
-    mysqli_query($conn, "UPDATE data_pesanan 
-                            SET status = 'Sudah Dibayar', metode_pembayaran = '$metode' 
+    mysqli_query($conn, "UPDATE data_pesanan
+                            SET status = 'Sudah Dibayar', metode_pembayaran = '$metode'
                             WHERE id_pesanan = '$id'");
     header("Location: detail_pesanan.php?id=$id");
     exit;
@@ -46,7 +49,7 @@ if(isset($_POST['simpan_bayar'])){
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-        <a href="index.php" class="breadcrumb-item">Dashboard</a>
+        <a href="dashboard.php" class="breadcrumb-item">Dashboard</a>
         <span class="breadcrumb-separator">/</span>
         <a href="kelola_pesanan.php" class="breadcrumb-item">Kelola Pesanan</a>
         <span class="breadcrumb-separator">/</span>

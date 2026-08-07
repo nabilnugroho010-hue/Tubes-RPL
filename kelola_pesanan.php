@@ -1,6 +1,5 @@
 <?php
 include "includes/auth.php";
-session_start();
 date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Kelola Pesanan";
@@ -39,7 +38,7 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan ORDER BY tgl_pesanan 
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-        <a href="index.php" class="breadcrumb-item">Dashboard</a>
+        <a href="dashboard.php" class="breadcrumb-item">Dashboard</a>
         <span class="breadcrumb-separator">/</span>
         <span class="breadcrumb-item active">Kelola Pesanan</span>
     </nav>

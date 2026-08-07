@@ -1,6 +1,5 @@
 <?php
 include "includes/auth.php";
-session_start();
 date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Ubah Status Pesanan";
@@ -8,12 +7,12 @@ $pageSubtitle = "Update status pesanan pelanggan";
 
 // Proses simpan hanya ubah status saja
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_status'])) {
-    $id_pesanan = $_POST['id_pesanan'];
-    $status_baru = $_POST['status_pesanan'];
+    $id_pesanan = mysqli_real_escape_string($conn, $_POST['id_pesanan']);
+    $status_baru = mysqli_real_escape_string($conn, $_POST['status_pesanan']);
 
     // Hanya update kolom yang ADA di tabel kamu
-    mysqli_query($conn, "UPDATE data_pesanan 
-        SET status = '$status_baru' 
+    mysqli_query($conn, "UPDATE data_pesanan
+        SET status = '$status_baru'
         WHERE id_pesanan = '$id_pesanan'");
 
     // Alihkan agar refresh tidak ulang simpan
@@ -22,7 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_status'])) {
 }
 
 // Ambil data pesanan
-$id = $_GET['id'];
+if (!isset($_GET['id'])) {
+    header("Location: kelola_pesanan.php");
+    exit;
+}
+$id = mysqli_real_escape_string($conn, $_GET['id']);
 $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pesanan WHERE id_pesanan = '$id'"));
 ?>
 <!DOCTYPE html>
@@ -43,7 +46,7 @@ $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pesanan WHERE
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-        <a href="index.php" class="breadcrumb-item">Dashboard</a>
+        <a href="dashboard.php" class="breadcrumb-item">Dashboard</a>
         <span class="breadcrumb-separator">/</span>
         <a href="kelola_pesanan.php" class="breadcrumb-item">Kelola Pesanan</a>
         <span class="breadcrumb-separator">/</span>

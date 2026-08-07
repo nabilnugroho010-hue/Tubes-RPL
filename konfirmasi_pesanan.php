@@ -1,6 +1,5 @@
 <?php
 include "includes/auth.php";
-session_start();
 date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Konfirmasi Pesanan";
@@ -31,7 +30,7 @@ $pesanan = mysqli_query($conn, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-        <a href="index.php" class="breadcrumb-item">Dashboard</a>
+        <a href="dashboard.php" class="breadcrumb-item">Dashboard</a>
         <span class="breadcrumb-separator">/</span>
         <span class="breadcrumb-item active">Konfirmasi Pesanan</span>
     </nav>

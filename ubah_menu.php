@@ -1,29 +1,30 @@
 <?php
 include "includes/auth.php";
-session_start();
 date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Ubah Menu";
 $pageSubtitle = "Edit informasi menu yang ada";
 
 // Ambil data menu
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-    $ambil = mysqli_query($conn, "SELECT * FROM data_menu WHERE id_menu = '$id'");
-    $menu = mysqli_fetch_assoc($ambil);
+if (!isset($_GET['id'])) {
+    header("Location: kelola_menu.php");
+    exit;
 }
+$id = mysqli_real_escape_string($conn, $_GET['id']);
+$ambil = mysqli_query($conn, "SELECT * FROM data_menu WHERE id_menu = '$id'");
+$menu = mysqli_fetch_assoc($ambil);
 
 // Proses simpan perubahan
 $pesan = "";
 $tampil_notif = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_perubahan'])) {
-    $id_menu = $_POST['id_menu'];
-    $nama_menu = trim($_POST['nama_menu']);
-    $jenis_menu = $_POST['jenis_menu'];
-    $harga = $_POST['harga'];
-    $status = $_POST['status'];
+    $id_menu = mysqli_real_escape_string($conn, $_POST['id_menu']);
+    $nama_menu = mysqli_real_escape_string($conn, trim($_POST['nama_menu']));
+    $jenis_menu = mysqli_real_escape_string($conn, $_POST['jenis_menu']);
+    $harga = mysqli_real_escape_string($conn, $_POST['harga']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
 
-    mysqli_query($conn, "UPDATE data_menu SET 
+    mysqli_query($conn, "UPDATE data_menu SET
                             nama_menu = '$nama_menu',
                             jenis_menu = '$jenis_menu',
                             harga = '$harga',
@@ -52,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_perubahan'])) {
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-        <a href="index.php" class="breadcrumb-item">Dashboard</a>
+        <a href="dashboard.php" class="breadcrumb-item">Dashboard</a>
         <span class="breadcrumb-separator">/</span>
         <a href="kelola_menu.php" class="breadcrumb-item">Kelola Menu</a>
         <span class="breadcrumb-separator">/</span>

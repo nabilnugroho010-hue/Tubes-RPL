@@ -1,6 +1,5 @@
 <?php
 include "includes/auth.php";
-session_start();
 date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Laporan Bulanan";
@@ -35,7 +34,7 @@ $total_pendapatan = 0;
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-        <a href="index.php" class="breadcrumb-item">Dashboard</a>
+        <a href="dashboard.php" class="breadcrumb-item">Dashboard</a>
         <span class="breadcrumb-separator">/</span>
         <span class="breadcrumb-item active">Laporan Bulanan</span>
     </nav>

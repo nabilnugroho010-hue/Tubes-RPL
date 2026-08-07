@@ -1,11 +1,3 @@
-<?php
-// Check if user is logged in
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header("Location: login.php");
-    exit;
-}
-?>
-
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="sidebar-header">
@@ -14,10 +6,6 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     </div>
     
     <nav class="sidebar-menu">
-        <a href="index.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">
-            <span class="sidebar-menu-icon">🏠</span>
-            <span class="sidebar-menu-text">Home</span>
-        </a>
         <a href="dashboard.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">
             <span class="sidebar-menu-icon">📊</span>
             <span class="sidebar-menu-text">Dashboard</span>
@@ -49,6 +37,9 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     </nav>
     
     <div class="sidebar-footer">
+        <a href="index.php" class="btn btn-outline w-100" style="margin-bottom: 8px;">
+            <span>🏠 Landing Page</span>
+        </a>
         <button onclick="confirmLogout()" class="btn btn-danger w-100">
             <span>🚪 Logout</span>
         </button>

@@ -1,6 +1,5 @@
 <?php
 include "includes/auth.php";
-session_start();
 date_default_timezone_set('Asia/Jakarta');
 include "koneksi.php";
 $pageTitle = "Tambah Menu";
@@ -11,12 +10,12 @@ $tampil_notif = false;
 
 // Proses simpan menu
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_menu'])) {
-    $nama_menu = trim($_POST['nama_menu']);
-    $jenis_menu = $_POST['jenis_menu'];
-    $harga = $_POST['harga'];
-    $status = $_POST['status'];
+    $nama_menu = mysqli_real_escape_string($conn, trim($_POST['nama_menu']));
+    $jenis_menu = mysqli_real_escape_string($conn, $_POST['jenis_menu']);
+    $harga = mysqli_real_escape_string($conn, $_POST['harga']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
 
-    mysqli_query($conn, "INSERT INTO data_menu (nama_menu, jenis_menu, harga, status) 
+    mysqli_query($conn, "INSERT INTO data_menu (nama_menu, jenis_menu, harga, status)
                             VALUES ('$nama_menu', '$jenis_menu', '$harga', '$status')");
 
     $pesan = "Menu baru berhasil ditambahkan!";
@@ -41,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan_menu'])) {
 
     <!-- Breadcrumb -->
     <nav class="breadcrumb">
-        <a href="index.php" class="breadcrumb-item">Dashboard</a>
+        <a href="dashboard.php" class="breadcrumb-item">Dashboard</a>
         <span class="breadcrumb-separator">/</span>
         <a href="kelola_menu.php" class="breadcrumb-item">Kelola Menu</a>
         <span class="breadcrumb-separator">/</span>
