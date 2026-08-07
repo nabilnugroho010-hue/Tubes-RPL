@@ -12,8 +12,9 @@ if(isset($_POST['masuk'])){
         $tampil = true;
     }
     elseif($user == "admin" && $pass == "1234"){
-        $_SESSION['admin'] = true;
-        header("Location: index.php");
+        $_SESSION['admin_logged_in'] = true;
+        $_SESSION['admin_username'] = $user;
+        header("Location: dashboard.php");
         exit;
     }
     else {

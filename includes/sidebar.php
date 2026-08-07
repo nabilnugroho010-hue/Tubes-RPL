@@ -1,3 +1,11 @@
+<?php
+// Check if user is logged in
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!-- Sidebar -->
 <aside class="sidebar">
     <div class="sidebar-header">
@@ -8,6 +16,10 @@
     <nav class="sidebar-menu">
         <a href="index.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">
             <span class="sidebar-menu-icon">🏠</span>
+            <span class="sidebar-menu-text">Home</span>
+        </a>
+        <a href="dashboard.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">
+            <span class="sidebar-menu-icon">📊</span>
             <span class="sidebar-menu-text">Dashboard</span>
         </a>
         <a href="kelola_menu.php" class="sidebar-menu-item <?= basename($_SERVER['PHP_SELF']) == 'kelola_menu.php' ? 'active' : '' ?>">
