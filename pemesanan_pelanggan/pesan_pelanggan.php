@@ -320,12 +320,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['kirim_pesanan'])) {
             <div class="grid grid-2">
                 <div class="form-group">
                     <label class="form-label">Nama Lengkap</label>
-                    <input type="text" name="nama_lengkap" class="form-control" placeholder="Masukkan nama Anda" required>
+                    <input type="text" name="nama_lengkap" class="form-control" placeholder="Masukkan nama Anda" required style="color: #333 !important; background: white !important;">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Nomor Meja</label>
-                    <input type="number" name="nomor_meja" class="form-control" placeholder="Contoh: 1, 2, 3" min="1" required>
+                    <input type="number" name="nomor_meja" class="form-control" placeholder="Contoh: 1, 2, 3" min="1" required style="color: #333 !important; background: white !important;">
                 </div>
             </div>
         </div>

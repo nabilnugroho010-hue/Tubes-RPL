@@ -402,14 +402,14 @@ if ($cek_pembayaran) {
         <form method="post" action="konfirmasi_pembayaran.php" enctype="multipart/form-data">
             <div class="form-group">
                 <label class="form-label" style="color: #333 !important;">Metode Pembayaran</label>
-                <select name="metode" class="form-control" required>
-                    <option value="QRIS">QRIS</option>
-                    <option value="Transfer BCA">Transfer BCA</option>
+                <select name="metode" class="form-control" required style="color: #333 !important; background: white !important;">
+                    <option value="QRIS" style="color: #333 !important; background: white !important;">QRIS</option>
+                    <option value="Transfer BCA" style="color: #333 !important; background: white !important;">Transfer BCA</option>
                 </select>
             </div>
             <div class="form-group">
                 <label class="form-label" style="color: #333 !important;">Upload Bukti Pembayaran</label>
-                <input type="file" name="bukti" class="form-control" accept="image/*" required>
+                <input type="file" name="bukti" class="form-control" accept="image/*" required style="color: #333 !important; background: white !important;">
                 <p style="color: #666 !important; font-size: 0.85rem; margin-top: 8px;">Format: JPG, PNG, JPEG (Max 5MB)</p>
             </div>
             <button type="submit" class="btn btn-success w-100">
