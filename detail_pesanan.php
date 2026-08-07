@@ -299,15 +299,15 @@ if(isset($_POST['simpan_bayar'])){
         <form method="post">
             <div class="form-group">
                 <label class="form-label">Metode Pembayaran</label>
-                <select name="metode" class="form-control" required>
-                    <option value="Tunai">Tunai</option>
-                    <option value="Transfer Bank">Transfer Bank</option>
-                    <option value="E-Wallet">E-Wallet</option>
+                <select name="metode" class="form-control" required style="color: #333 !important; background: white !important;">
+                    <option value="Tunai" style="color: #333 !important; background: white !important;">Tunai</option>
+                    <option value="Transfer Bank" style="color: #333 !important; background: white !important;">Transfer Bank</option>
+                    <option value="E-Wallet" style="color: #333 !important; background: white !important;">E-Wallet</option>
                 </select>
             </div>
             <div class="form-group">
                 <label class="form-label">Bukti Pembayaran / Keterangan</label>
-                <input type="text" name="bukti_url" class="form-control" placeholder="Contoh: bukti_001.jpg">
+                <input type="text" name="bukti_url" class="form-control" placeholder="Contoh: bukti_001.jpg" style="color: #333 !important; background: white !important;">
             </div>
             <button type="submit" name="simpan_bayar" class="btn btn-success w-100">
                 <span>Konfirmasi Pembayaran</span>
