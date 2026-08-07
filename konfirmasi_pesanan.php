@@ -199,7 +199,7 @@ $pesanan = mysqli_query($conn, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar
                     <td><?= date('d F Y • H:i:s', strtotime($p['tgl_pesanan'])) ?> WIB</td>
                     <td><?= $p['nama_pelanggan'] ?></td>
                     <td><?= $p['no_meja'] ?></td>
-                    <td style="color: var(--neon-cyan); font-weight: 500;">Rp <?= number_format($p['total_harga'], 0, ',', '.') ?></td>
+                    <td style="color: #667eea; font-weight: 500;">Rp <?= number_format($p['total_harga'], 0, ',', '.') ?></td>
                     <td>
                         <span class="status-badge status-processing"><?= $p['metode'] ?></span>
                     </td>
@@ -207,7 +207,7 @@ $pesanan = mysqli_query($conn, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar
                         <?php if ($p['bukti_url']): ?>
                         <a href="<?= $p['bukti_url'] ?>" target="_blank" class="btn btn-sm btn-secondary">📷 Lihat Bukti</a>
                         <?php else: ?>
-                        <span style="color: var(--text-muted);">-</span>
+                        <span style="color: #666;">-</span>
                         <?php endif; ?>
                     </td>
                     <td>
@@ -222,8 +222,8 @@ $pesanan = mysqli_query($conn, "SELECT p.*, bayar.metode, bayar.bukti_url, bayar
         <?php else: ?>
         <div class="glass-card" style="text-align: center; padding: 40px;">
             <div style="font-size: 3rem; margin-bottom: 16px;">📭</div>
-            <h3 style="color: var(--text-muted); margin-bottom: 8px;">Belum Ada Pesanan</h3>
-            <p style="color: var(--text-muted);">Tidak ada pesanan yang menunggu konfirmasi pembayaran.</p>
+            <h3 style="color: #666; margin-bottom: 8px;">Belum Ada Pesanan</h3>
+            <p style="color: #666;">Tidak ada pesanan yang menunggu konfirmasi pembayaran.</p>
         </div>
         <?php endif; ?>
     </div>

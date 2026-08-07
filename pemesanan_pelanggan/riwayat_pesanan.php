@@ -23,18 +23,44 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan 
     <title>Riwayat Pesanan - SPGFood</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        * {
+            color: #333 !important;
+        }
+        
+        .glass-container {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .glass-container h1,
+        .glass-container h2,
+        .glass-container h3,
+        .glass-container p {
+            color: #333 !important;
+        }
+        
         .history-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-md);
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
             padding: 20px;
             margin-bottom: 16px;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
         
         .history-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(0, 245, 255, 0.2);
+            background: white;
+            border-color: #667eea;
         }
         
         .history-header {
@@ -43,16 +69,16 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan 
             align-items: center;
             margin-bottom: 12px;
             padding-bottom: 12px;
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid #e0e0e0;
         }
         
         .history-id {
             font-weight: 600;
-            color: var(--neon-cyan);
+            color: #667eea !important;
         }
         
         .history-date {
-            color: var(--text-muted);
+            color: #666 !important;
             font-size: 0.85rem;
         }
         
@@ -64,7 +90,7 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan 
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid #e0e0e0;
         }
         
         .history-item:last-child {
@@ -76,7 +102,7 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan 
             justify-content: space-between;
             align-items: center;
             padding-top: 12px;
-            border-top: 1px solid var(--glass-border);
+            border-top: 1px solid #e0e0e0;
         }
         
         .history-status {
@@ -88,36 +114,36 @@ $pesanan = mysqli_query($conn, "SELECT * FROM data_pesanan WHERE kode_pelanggan 
         
         .status-pending {
             background: rgba(255, 170, 0, 0.15);
-            color: var(--warning);
+            color: #ffaa00 !important;
             border: 1px solid rgba(255, 170, 0, 0.3);
         }
         
         .status-processing {
-            background: rgba(0, 245, 255, 0.15);
-            color: var(--neon-cyan);
-            border: 1px solid rgba(0, 245, 255, 0.3);
+            background: rgba(102, 126, 234, 0.15);
+            color: #667eea !important;
+            border: 1px solid rgba(102, 126, 234, 0.3);
         }
         
         .status-paid {
-            background: rgba(0, 255, 136, 0.15);
-            color: var(--success);
-            border: 1px solid rgba(0, 255, 136, 0.3);
+            background: rgba(0, 200, 83, 0.15);
+            color: #00c853 !important;
+            border: 1px solid rgba(0, 200, 83, 0.3);
         }
         
         .status-completed {
-            background: rgba(191, 0, 255, 0.15);
-            color: var(--neon-purple);
-            border: 1px solid rgba(191, 0, 255, 0.3);
+            background: rgba(118, 75, 162, 0.15);
+            color: #764ba2 !important;
+            border: 1px solid rgba(118, 75, 162, 0.3);
         }
     </style>
 </head>
 <body>
 
-<div class="glass-container" style="max-width: 800px; margin: 40px auto; padding: 32px;">
+<div class="glass-container">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 32px;">
         <h1 style="margin-bottom: 8px;">📜 Riwayat Pesanan</h1>
-        <p style="color: var(--text-muted);">Lihat riwayat pesanan Anda</p>
+        <p style="color: #666;">Lihat riwayat pesanan Anda</p>
     </div>
 
     <!-- Search by Code -->

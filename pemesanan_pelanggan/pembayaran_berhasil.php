@@ -36,6 +36,16 @@ $cek_pembayaran = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pem
     <title>Pembayaran Berhasil - SPGFood</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        * {
+            color: #333 !important;
+        }
+        
         .success-animation {
             animation: successPulse 2s ease-in-out infinite;
         }
@@ -65,7 +75,7 @@ $cek_pembayaran = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pem
         .countdown {
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--neon-cyan);
+            color: #667eea !important;
         }
         
         .progress-bar {
@@ -81,6 +91,27 @@ $cek_pembayaran = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM data_pem
             background: linear-gradient(90deg, #00ff88, #00f5ff);
             border-radius: 2px;
             transition: width 1s linear;
+        }
+        
+        .glass-container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 40px auto;
+        }
+        
+        .glass-container h1,
+        .glass-container h2,
+        .glass-container h3,
+        .glass-container p {
+            color: #333 !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
         }
     </style>
 </head>

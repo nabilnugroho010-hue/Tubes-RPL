@@ -80,26 +80,65 @@ if(isset($_POST['cek_status'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cek Status Pesanan - SPGFood</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        * {
+            color: #333 !important;
+        }
+        
+        .glass-container {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 40px auto;
+        }
+        
+        .glass-container h2,
+        .glass-container h3,
+        .glass-container p {
+            color: #333 !important;
+        }
+        
+        .glass-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+        }
+    </style>
 </head>
 <body>
 
-<div class="glass-container" style="max-width: 700px; margin: 40px auto; padding: 32px;">
+<div class="glass-container">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 32px;">
         <h2 style="margin-bottom: 8px;">🔍 Cek Status Pesanan</h2>
-        <p style="color: var(--text-muted);"><?= $auto_check ? 'Status pesanan Anda' : 'Lacak status pesanan Anda' ?></p>
+        <p style="color: #666;"><?= $auto_check ? 'Status pesanan Anda' : 'Lacak status pesanan Anda' ?></p>
     </div>
 
     <?php if(!empty($status_pesanan) && !$data_pesanan): ?>
-    <div class="glass-card mb-3" style="background: rgba(255, 68, 102, 0.1); border-color: rgba(255, 68, 102, 0.3);">
-        <p style="line-height: 1.8; margin: 0; color: var(--error);"><?= $status_pesanan ?></p>
+    <div class="glass-card" style="background: rgba(255, 68, 102, 0.1); border-color: rgba(255, 68, 102, 0.3);">
+        <p style="line-height: 1.8; margin: 0; color: #ff4466 !important;"><?= $status_pesanan ?></p>
     </div>
     <?php endif; ?>
 
     <?php if($data_pesanan): ?>
     <!-- Ringkasan Pesanan Real-time -->
-    <div class="glass-card mb-3">
-        <h3 style="margin-bottom: 16px; font-size: 1.1rem;">📋 Ringkasan Pesanan</h3>
+    <div class="glass-card">
+        <h3 style="margin-bottom: 16px; font-size: 1.1rem; color: #333 !important;">📋 Ringkasan Pesanan</h3>
         
         <!-- Informasi Pesanan -->
         <div class="glass-card" style="background: rgba(0, 245, 255, 0.05); border-color: rgba(0, 245, 255, 0.2); margin-bottom: 16px;">
